@@ -38,6 +38,8 @@ export type DeadStockAuditResult = {
   liquidationPlan: string[]
   disclaimer: string
   dispatchedToWebhook: boolean
+  webhookConfigured?: boolean
+  webhookHost?: string
   responseStatus?: number
   error?: string
 }
@@ -161,7 +163,15 @@ async function dispatchAuditWebhook(
   webhookUrl: string,
   payload: DeadStockAuditPayload
 ): Promise<{ success: boolean; responseStatus?: number; error?: string }> {
+  let hostname = 'unknown'
   try {
+    hostname = new URL(webhookUrl).hostname
+  } catch {
+    // safe fallback
+  }
+
+  try {
+    console.log(`[DeadStockAudit] Dispatching to webhook host: ${hostname}, totalItems: ${payload.totalDeadStockItems}`)
     const response = await fetch(webhookUrl, {
       method: 'POST',
       headers: {
@@ -171,6 +181,8 @@ async function dispatchAuditWebhook(
       body: JSON.stringify(payload),
       signal: AbortSignal.timeout(8000), // 8-second safety timeout
     })
+
+    console.log(`[DeadStockAudit] Response from ${hostname}: HTTP ${response.status}`)
 
     if (!response.ok) {
       const errorText = await response.text().catch(() => 'Unknown HTTP error')
@@ -187,6 +199,7 @@ async function dispatchAuditWebhook(
     }
   } catch (err: unknown) {
     const message = err instanceof Error ? err.message : 'Network error'
+    console.error(`[DeadStockAudit] Webhook dispatch exception to ${hostname}: ${message}`)
     return {
       success: false,
       error: `Webhook dispatch failed: ${message}`,
@@ -284,8 +297,24 @@ export async function executeDeadStockBiweeklyAudit({
     'AI-generated recommendation: All liquidation actions are algorithmically generated based on historical sales velocity and working capital impact. Store leadership must review and approve all proposed markdowns or promotions prior to execution.'
 
   const nowIso = new Date().toISOString()
-  const resolvedWebhookUrl = webhookUrl?.trim() ?? ''
+  const resolvedWebhookUrl =
+    webhookUrl?.trim() ||
+    process.env.MAKE_DEAD_STOCK_WEBHOOK_URL?.trim() ||
+    ''
   const maskedUrl = maskWebhookUrl(resolvedWebhookUrl)
+
+  let webhookHost: string | undefined
+  if (resolvedWebhookUrl) {
+    try {
+      webhookHost = new URL(resolvedWebhookUrl).hostname
+    } catch {
+      webhookHost = 'invalid_url'
+    }
+  }
+
+  console.log(
+    `[DeadStockAudit] Webhook configured: ${Boolean(resolvedWebhookUrl)}${webhookHost ? ` (${webhookHost})` : ''}, entering dispatch: ${Boolean(resolvedWebhookUrl)}`
+  )
 
   const payload: DeadStockAuditPayload = {
     eventId: auditId,
@@ -337,6 +366,7 @@ export async function executeDeadStockBiweeklyAudit({
       executivePlan,
       disclaimer,
       dispatchedToWebhook,
+      webhookHost,
     },
   })
 
@@ -351,6 +381,8 @@ export async function executeDeadStockBiweeklyAudit({
     liquidationPlan: executivePlan,
     disclaimer,
     dispatchedToWebhook,
+    webhookConfigured: Boolean(resolvedWebhookUrl),
+    webhookHost,
     responseStatus,
     error: dispatchError,
   }

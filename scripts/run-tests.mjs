@@ -9,6 +9,7 @@ const testSuites = [
   'tests/verify-api-contract-suite.ts',
   'tests/verify-security-rls-suite.ts',
   'tests/verify-low-stock-suite.ts',
+  'tests/verify-dead-stock-suite.ts',
   'tests/verify-ai-mcp-suite.ts',
 ]
 
