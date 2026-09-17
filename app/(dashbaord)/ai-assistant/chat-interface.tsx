@@ -177,8 +177,8 @@ I am your **Autonomous Retail Intelligence Assistant**, directly integrated with
         .filter((row) => row.length > 0)
 
       elements.push(
-        <div key={`table-${keyPrefix}`} className="my-3 overflow-x-auto rounded-xl border border-slate-200 bg-white shadow-2xs">
-          <table className="min-w-full text-xs text-left">
+        <div key={`table-${keyPrefix}`} className="my-3 w-full min-w-0 max-w-full overflow-x-auto overscroll-x-contain rounded-xl border border-slate-200 bg-white shadow-2xs" style={{ WebkitOverflowScrolling: 'touch' }}>
+          <table className="min-w-[400px] w-full text-xs text-left">
             <thead className="bg-slate-50 text-slate-700 font-semibold border-b border-slate-200">
               <tr>
                 {headerRow.map((col, cIdx) => (
@@ -322,30 +322,31 @@ I am your **Autonomous Retail Intelligence Assistant**, directly integrated with
   }
 
   return (
-    <div className="flex flex-col h-[740px] rounded-2xl border border-slate-200 bg-white shadow-xs overflow-hidden">
+    <div className="flex flex-col h-[650px] sm:h-[740px] w-full min-w-0 max-w-full rounded-2xl border border-slate-200 bg-white shadow-xs overflow-hidden">
       {/* Top Banner with Stitch Design Aesthetics */}
-      <div className="flex flex-wrap items-center justify-between border-b border-slate-200 bg-slate-50/80 px-6 py-3.5 gap-3">
-        <div className="flex items-center gap-3">
-          <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-tr from-indigo-600 to-blue-600 text-white shadow-xs">
+      <div className="flex flex-wrap items-center justify-between border-b border-slate-200 bg-slate-50/80 px-4 sm:px-6 py-3 sm:py-3.5 gap-3">
+        <div className="flex items-center gap-3 min-w-0">
+          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-gradient-to-tr from-indigo-600 to-blue-600 text-white shadow-xs">
             <svg className="h-4.5 w-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
             </svg>
           </div>
-          <div>
-            <div className="flex items-center gap-2">
-              <h2 className="text-sm font-bold text-slate-900">RetailPilot Live Copilot</h2>
-              <span className="inline-flex items-center rounded-full bg-indigo-50 px-2 py-0.5 text-[10px] font-semibold text-indigo-700 border border-indigo-200">
+          <div className="min-w-0">
+            <div className="flex flex-wrap items-center gap-2">
+              <h2 className="text-sm font-bold text-slate-900 truncate">RetailPilot Live Copilot</h2>
+              <span className="inline-flex items-center rounded-full bg-indigo-50 px-2 py-0.5 text-[10px] font-semibold text-indigo-700 border border-indigo-200 shrink-0">
                 Model Context Protocol v2
               </span>
             </div>
-            <p className="text-[11px] text-slate-500">Live PostgreSQL ledger query & analytics synthesis</p>
+            <p className="text-[11px] text-slate-500 truncate">Live PostgreSQL ledger query & analytics synthesis</p>
           </div>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 shrink-0">
           <div className="flex items-center gap-1.5 rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700 border border-emerald-200">
             <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span>MCP Tools Online</span>
+            <span className="hidden sm:inline">MCP Tools Online</span>
+            <span className="sm:hidden">Online</span>
           </div>
 
           <button
@@ -360,7 +361,7 @@ I am your **Autonomous Retail Intelligence Assistant**, directly integrated with
       </div>
 
       {/* Messages Scroll Feed */}
-      <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-slate-50/30">
+      <div className="flex-1 overflow-y-auto p-3.5 sm:p-6 space-y-4 bg-slate-50/30">
         {messages.map((msg) => (
           <div
             key={msg.id}
@@ -387,7 +388,7 @@ I am your **Autonomous Retail Intelligence Assistant**, directly integrated with
 
             {/* Bubble */}
             <div
-              className={`rounded-2xl p-4 sm:p-5 max-w-3xl shadow-xs transition-all ${
+              className={`rounded-2xl p-3.5 sm:p-5 max-w-full sm:max-w-3xl min-w-0 break-words shadow-xs transition-all ${
                 msg.sender === 'user'
                   ? 'bg-gradient-to-r from-indigo-600 to-indigo-700 text-white rounded-tr-xs shadow-indigo-500/10'
                   : 'bg-white border border-slate-200 text-slate-800 rounded-tl-xs shadow-slate-200/50'
@@ -427,7 +428,7 @@ I am your **Autonomous Retail Intelligence Assistant**, directly integrated with
       </div>
 
       {/* Categorized Suggested Prompts Section */}
-      <div className="border-t border-slate-100 bg-white px-6 py-2.5 space-y-2">
+      <div className="border-t border-slate-100 bg-white px-3.5 sm:px-6 py-2.5 space-y-2">
         <div className="flex items-center gap-2 overflow-x-auto pb-1 text-xs">
           <span className="text-slate-400 font-semibold text-[11px] uppercase tracking-wider shrink-0 mr-1">
             Suggested:
@@ -466,15 +467,15 @@ I am your **Autonomous Retail Intelligence Assistant**, directly integrated with
       </div>
 
       {/* Input Form Toolbar */}
-      <div className="border-t border-slate-200 bg-white p-4">
+      <div className="border-t border-slate-200 bg-white p-3 sm:p-4">
         <form
           onSubmit={(e) => {
             e.preventDefault()
             handleSendMessage()
           }}
-          className="flex items-center gap-2.5"
+          className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-2.5"
         >
-          <div className="relative flex-1">
+          <div className="relative flex-1 min-w-0">
             <input
               ref={inputRef}
               type="text"
@@ -482,15 +483,15 @@ I am your **Autonomous Retail Intelligence Assistant**, directly integrated with
               value={input}
               onChange={(e) => setInput(e.target.value)}
               disabled={isPending}
-              placeholder="Ask Copilot about low stock, dead stock, profitability, supplier payables, or executive reports..."
-              className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-indigo-500 focus:outline-hidden focus:ring-2 focus:ring-indigo-500/20 disabled:bg-slate-50 transition"
+              placeholder="Ask Copilot about low stock, dead stock, profitability, supplier payables..."
+              className="w-full rounded-xl border border-slate-300 bg-white px-3.5 sm:px-4 py-2.5 sm:py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-indigo-500 focus:outline-hidden focus:ring-2 focus:ring-indigo-500/20 disabled:bg-slate-50 transition"
             />
           </div>
 
           <button
             type="submit"
             disabled={isPending || !input.trim()}
-            className="inline-flex items-center gap-1.5 rounded-xl bg-indigo-600 px-5 py-3 text-sm font-semibold text-white shadow-xs hover:bg-indigo-700 active:bg-indigo-800 focus:outline-hidden focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:bg-indigo-300 disabled:cursor-not-allowed transition"
+            className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-indigo-600 px-5 py-2.5 sm:py-3 text-sm font-semibold text-white shadow-xs hover:bg-indigo-700 active:bg-indigo-800 focus:outline-hidden focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:bg-indigo-300 disabled:cursor-not-allowed transition w-full sm:w-auto shrink-0"
           >
             {isPending ? (
               <>
@@ -507,7 +508,7 @@ I am your **Autonomous Retail Intelligence Assistant**, directly integrated with
             )}
           </button>
         </form>
-        <div className="mt-2 flex items-center justify-between px-1 text-[11px] text-slate-400">
+        <div className="mt-2 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-1 px-1 text-[11px] text-slate-400">
           <span>Press ↵ Enter to submit query</span>
           <span>Security: Multi-tenant RBAC enforced · Customer data isolated</span>
         </div>

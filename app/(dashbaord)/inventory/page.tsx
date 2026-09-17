@@ -184,7 +184,7 @@ export default async function InventoryPage() {
 
   if (error) {
     return (
-      <main className="space-y-6 p-6 max-w-7xl mx-auto">
+      <main className="w-full min-w-0 max-w-7xl mx-auto space-y-6 p-4 sm:p-6">
         <div className="border-b border-slate-200 pb-5">
           <h1 className="text-2xl font-bold tracking-tight text-slate-900">Inventory</h1>
           <p className="mt-1 text-sm text-slate-500">
@@ -241,7 +241,7 @@ export default async function InventoryPage() {
 
   if (lookupError) {
     return (
-      <main className="space-y-6 p-6 max-w-7xl mx-auto">
+      <main className="w-full min-w-0 max-w-7xl mx-auto space-y-6 p-4 sm:p-6">
         <div className="border-b border-slate-200 pb-5">
           <h1 className="text-2xl font-bold tracking-tight text-slate-900">Inventory</h1>
           <p className="mt-1 text-sm text-slate-500">
@@ -286,23 +286,23 @@ export default async function InventoryPage() {
   const outOfStockCount = stockSummary.filter((s) => s.currentStock <= 0).length
 
   return (
-    <main className="space-y-6 p-6 max-w-7xl mx-auto">
+    <main className="w-full min-w-0 max-w-7xl mx-auto space-y-6 p-4 sm:p-6">
       {/* Page Header */}
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between border-b border-slate-200 pb-5">
-        <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-teal-600 text-white shadow-xs">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between border-b border-slate-200 pb-5 min-w-0">
+        <div className="flex items-start sm:items-center gap-3 min-w-0 flex-1">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-teal-600 text-white shadow-xs mt-0.5 sm:mt-0">
             <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
             </svg>
           </div>
-          <div>
-            <div className="flex items-center gap-3">
+          <div className="min-w-0 flex-1">
+            <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
               <h1 className="text-2xl font-bold tracking-tight text-slate-900">Inventory</h1>
               <span className="inline-flex items-center rounded-full bg-teal-50 px-2.5 py-0.5 text-xs font-semibold text-teal-700 border border-teal-200">
                 Immutable Ledger
               </span>
             </div>
-            <p className="mt-0.5 text-sm text-slate-500">
+            <p className="mt-1 text-sm text-slate-500 break-words">
               Real-time stock calculations derived directly from the tamper-proof ledger.
             </p>
           </div>
@@ -311,62 +311,62 @@ export default async function InventoryPage() {
       </div>
 
       {/* High-Level Stock Health KPIs */}
-      <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-        <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-xs">
-          <div className="flex items-center justify-between">
-            <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">Tracked Items</p>
-            <span className="flex h-7 w-7 items-center justify-center rounded-md bg-teal-50 text-teal-700 border border-teal-100 text-xs">
+      <div className="grid grid-cols-2 gap-3 sm:gap-4 sm:grid-cols-4 min-w-0">
+        <div className="rounded-xl border border-slate-200 bg-white p-3.5 sm:p-4 shadow-xs min-w-0">
+          <div className="flex items-center justify-between gap-1">
+            <p className="text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-slate-500 truncate" title="Tracked Items">Tracked Items</p>
+            <span className="flex h-7 w-7 items-center justify-center rounded-md bg-teal-50 text-teal-700 border border-teal-100 text-xs shrink-0">
               📦
             </span>
           </div>
-          <div className="mt-2 flex items-baseline gap-2">
-            <span className="text-2xl font-bold text-slate-900">{stockSummary.length}</span>
+          <div className="mt-2 flex items-baseline gap-1.5 flex-wrap">
+            <span className="text-xl sm:text-2xl font-bold text-slate-900 truncate">{stockSummary.length}</span>
             <span className="text-xs text-slate-400">skus</span>
           </div>
         </div>
 
-        <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-xs">
-          <div className="flex items-center justify-between">
-            <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">Healthy Stock</p>
-            <span className="flex h-7 w-7 items-center justify-center rounded-md bg-emerald-50 text-emerald-700 border border-emerald-100 text-xs">
+        <div className="rounded-xl border border-slate-200 bg-white p-3.5 sm:p-4 shadow-xs min-w-0">
+          <div className="flex items-center justify-between gap-1">
+            <p className="text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-slate-500 truncate" title="Healthy Stock">Healthy Stock</p>
+            <span className="flex h-7 w-7 items-center justify-center rounded-md bg-emerald-50 text-emerald-700 border border-emerald-100 text-xs shrink-0">
               ✓
             </span>
           </div>
-          <div className="mt-2 flex items-baseline gap-2">
-            <span className="text-2xl font-bold text-emerald-700">{inStockCount}</span>
+          <div className="mt-2 flex items-baseline gap-1.5 flex-wrap">
+            <span className="text-xl sm:text-2xl font-bold text-emerald-700 truncate">{inStockCount}</span>
             <span className="text-xs text-emerald-600">optimal</span>
           </div>
         </div>
 
-        <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-xs">
-          <div className="flex items-center justify-between">
-            <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">Low Stock</p>
-            <span className="flex h-7 w-7 items-center justify-center rounded-md bg-amber-50 text-amber-700 border border-amber-100 text-xs">
+        <div className="rounded-xl border border-slate-200 bg-white p-3.5 sm:p-4 shadow-xs min-w-0">
+          <div className="flex items-center justify-between gap-1">
+            <p className="text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-slate-500 truncate" title="Low Stock">Low Stock</p>
+            <span className="flex h-7 w-7 items-center justify-center rounded-md bg-amber-50 text-amber-700 border border-amber-100 text-xs shrink-0">
               ⚠️
             </span>
           </div>
-          <div className="mt-2 flex items-baseline gap-2">
-            <span className="text-2xl font-bold text-amber-700">{lowStockCount}</span>
+          <div className="mt-2 flex items-baseline gap-1.5 flex-wrap">
+            <span className="text-xl sm:text-2xl font-bold text-amber-700 truncate">{lowStockCount}</span>
             <span className="text-xs text-amber-600">reorder</span>
           </div>
         </div>
 
-        <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-xs">
-          <div className="flex items-center justify-between">
-            <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">Out of Stock</p>
-            <span className="flex h-7 w-7 items-center justify-center rounded-md bg-rose-50 text-rose-700 border border-rose-100 text-xs">
+        <div className="rounded-xl border border-slate-200 bg-white p-3.5 sm:p-4 shadow-xs min-w-0">
+          <div className="flex items-center justify-between gap-1">
+            <p className="text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-slate-500 truncate" title="Out of Stock">Out of Stock</p>
+            <span className="flex h-7 w-7 items-center justify-center rounded-md bg-rose-50 text-rose-700 border border-rose-100 text-xs shrink-0">
               ✕
             </span>
           </div>
-          <div className="mt-2 flex items-baseline gap-2">
-            <span className="text-2xl font-bold text-rose-700">{outOfStockCount}</span>
+          <div className="mt-2 flex items-baseline gap-1.5 flex-wrap">
+            <span className="text-xl sm:text-2xl font-bold text-rose-700 truncate">{outOfStockCount}</span>
             <span className="text-xs text-rose-600">depleted</span>
           </div>
         </div>
       </div>
 
       {/* Current Stock Section */}
-      <section className="space-y-3">
+      <section className="w-full min-w-0 max-w-full space-y-3">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
           <div>
             <h2 className="text-lg font-bold tracking-tight text-slate-900">Current Stock</h2>
@@ -380,7 +380,7 @@ export default async function InventoryPage() {
         </div>
 
         {stockSummary.length === 0 ? (
-          <div className="rounded-xl border border-dashed border-slate-300 bg-slate-50/50 p-8 text-center shadow-xs">
+          <div className="rounded-xl border border-dashed border-slate-300 bg-slate-50/50 p-6 sm:p-8 text-center shadow-xs">
             <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-slate-400 mb-3">
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
@@ -392,17 +392,17 @@ export default async function InventoryPage() {
             </p>
           </div>
         ) : (
-          <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-xs">
-            <div className="overflow-x-auto">
+          <div className="w-full min-w-0 max-w-full overflow-hidden rounded-xl border border-slate-200 bg-white shadow-xs">
+            <div className="w-full overflow-x-auto overscroll-x-contain" style={{ WebkitOverflowScrolling: 'touch' }}>
               <table className="min-w-[760px] w-full text-left text-sm">
                 <thead className="border-b border-slate-200 bg-slate-50/80 text-xs font-semibold uppercase tracking-wider text-slate-600">
                   <tr>
-                    <th scope="col" className="px-5 py-3.5">Product</th>
-                    <th scope="col" className="px-4 py-3.5">SKU</th>
-                    <th scope="col" className="px-4 py-3.5">Store Location</th>
-                    <th scope="col" className="px-4 py-3.5 text-right">Current Stock</th>
-                    <th scope="col" className="px-4 py-3.5 text-right">Reorder Threshold</th>
-                    <th scope="col" className="px-5 py-3.5 text-center">Stock Health</th>
+                    <th scope="col" className="px-5 py-3.5 whitespace-nowrap">Product</th>
+                    <th scope="col" className="px-4 py-3.5 whitespace-nowrap">SKU</th>
+                    <th scope="col" className="px-4 py-3.5 whitespace-nowrap">Store Location</th>
+                    <th scope="col" className="px-4 py-3.5 text-right whitespace-nowrap">Current Stock</th>
+                    <th scope="col" className="px-4 py-3.5 text-right whitespace-nowrap">Reorder Threshold</th>
+                    <th scope="col" className="px-5 py-3.5 text-center whitespace-nowrap">Stock Health</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100">
@@ -411,10 +411,10 @@ export default async function InventoryPage() {
 
                     return (
                       <tr key={stock.key} className="hover:bg-slate-50/60 transition-colors">
-                        <td className="px-5 py-4 font-semibold text-slate-900">
+                        <td className="px-5 py-4 font-semibold text-slate-900 max-w-[200px] sm:max-w-xs truncate" title={stock.productName}>
                           {stock.productName}
                         </td>
-                        <td className="px-4 py-4 text-slate-600 font-mono text-xs">
+                        <td className="px-4 py-4 text-slate-600 font-mono text-xs whitespace-nowrap">
                           {stock.sku ? (
                             <span className="rounded-md bg-slate-100 px-2 py-0.5 border border-slate-200">
                               {stock.sku}
@@ -423,13 +423,13 @@ export default async function InventoryPage() {
                             <span className="text-slate-400">—</span>
                           )}
                         </td>
-                        <td className="px-4 py-4 text-slate-700">
-                          <div className="font-medium">{stock.storeName}</div>
+                        <td className="px-4 py-4 text-slate-700 max-w-[160px] sm:max-w-xs truncate" title={stock.storeName}>
+                          <div className="font-medium truncate">{stock.storeName}</div>
                           {stock.storeCode && (
                             <div className="text-[11px] text-slate-400 font-mono">Code: {stock.storeCode}</div>
                           )}
                         </td>
-                        <td className="px-4 py-4 text-right">
+                        <td className="px-4 py-4 text-right whitespace-nowrap">
                           <span
                             className={`text-base font-bold ${
                               stock.currentStock <= 0
@@ -442,12 +442,12 @@ export default async function InventoryPage() {
                             {formatNumber(stock.currentStock)}
                           </span>
                         </td>
-                        <td className="px-4 py-4 text-right text-slate-600 text-xs">
+                        <td className="px-4 py-4 text-right text-slate-600 text-xs whitespace-nowrap">
                           <span className="rounded-md bg-slate-50 px-2 py-1 border border-slate-200 font-medium">
                             Min: {formatNumber(stock.reorderLevel)}
                           </span>
                         </td>
-                        <td className="px-5 py-4 text-center">
+                        <td className="px-5 py-4 text-center whitespace-nowrap">
                           {status.status === 'in_stock' && (
                             <span className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
                               <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
@@ -478,7 +478,7 @@ export default async function InventoryPage() {
       </section>
 
       {/* Movement History Section */}
-      <section className="space-y-3 pt-2">
+      <section className="w-full min-w-0 max-w-full space-y-3 pt-2">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
           <div>
             <div className="flex items-center gap-2">
@@ -497,7 +497,7 @@ export default async function InventoryPage() {
         </div>
 
         {movements.length === 0 ? (
-          <div className="rounded-xl border border-dashed border-slate-300 bg-slate-50/50 p-8 text-center shadow-xs">
+          <div className="rounded-xl border border-dashed border-slate-300 bg-slate-50/50 p-6 sm:p-8 text-center shadow-xs">
             <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-slate-400 mb-3">
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -509,17 +509,17 @@ export default async function InventoryPage() {
             </p>
           </div>
         ) : (
-          <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-xs">
-            <div className="overflow-x-auto">
+          <div className="w-full min-w-0 max-w-full overflow-hidden rounded-xl border border-slate-200 bg-white shadow-xs">
+            <div className="w-full overflow-x-auto overscroll-x-contain" style={{ WebkitOverflowScrolling: 'touch' }}>
               <table className="min-w-[900px] w-full text-left text-sm">
                 <thead className="border-b border-slate-200 bg-slate-50/80 text-xs font-semibold uppercase tracking-wider text-slate-600">
                   <tr>
-                    <th scope="col" className="px-5 py-3.5">Product & SKU</th>
-                    <th scope="col" className="px-4 py-3.5">Movement Type</th>
-                    <th scope="col" className="px-4 py-3.5 text-right">Ledger Impact</th>
-                    <th scope="col" className="px-4 py-3.5">Store Location</th>
-                    <th scope="col" className="px-4 py-3.5">Reference Source</th>
-                    <th scope="col" className="px-5 py-3.5">Timestamp</th>
+                    <th scope="col" className="px-5 py-3.5 whitespace-nowrap">Product & SKU</th>
+                    <th scope="col" className="px-4 py-3.5 whitespace-nowrap">Movement Type</th>
+                    <th scope="col" className="px-4 py-3.5 text-right whitespace-nowrap">Ledger Impact</th>
+                    <th scope="col" className="px-4 py-3.5 whitespace-nowrap">Store Location</th>
+                    <th scope="col" className="px-4 py-3.5 whitespace-nowrap">Reference Source</th>
+                    <th scope="col" className="px-5 py-3.5 whitespace-nowrap">Timestamp</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100">
@@ -530,11 +530,11 @@ export default async function InventoryPage() {
 
                     return (
                       <tr key={movement.id} className="hover:bg-slate-50/60 transition-colors">
-                        <td className="px-5 py-4">
-                          <p className="font-semibold text-slate-900">
+                        <td className="px-5 py-4 max-w-[220px] truncate" title={product?.name ?? 'Unknown product'}>
+                          <p className="font-semibold text-slate-900 truncate">
                             {product?.name ?? 'Unknown product'}
                           </p>
-                          <p className="mt-0.5 text-xs text-slate-500 font-mono">
+                          <p className="mt-0.5 text-xs text-slate-500 font-mono truncate">
                             SKU: {product?.sku ? (
                               <span className="text-slate-700 font-medium">{product.sku}</span>
                             ) : (
@@ -542,10 +542,10 @@ export default async function InventoryPage() {
                             )}
                           </p>
                         </td>
-                        <td className="px-4 py-4">
+                        <td className="px-4 py-4 whitespace-nowrap">
                           {getMovementBadge(movement.movement_type)}
                         </td>
-                        <td className="px-4 py-4 text-right">
+                        <td className="px-4 py-4 text-right whitespace-nowrap">
                           <span
                             className={`text-sm font-bold font-mono ${
                               delta > 0
@@ -558,14 +558,14 @@ export default async function InventoryPage() {
                             {delta > 0 ? `+${formatNumber(delta)}` : formatNumber(delta)}
                           </span>
                         </td>
-                        <td className="px-4 py-4 text-slate-700">
-                          <div className="font-medium text-slate-800">{store?.name ?? 'Unknown store'}</div>
+                        <td className="px-4 py-4 text-slate-700 max-w-[160px] sm:max-w-xs truncate" title={store?.name ?? 'Unknown store'}>
+                          <div className="font-medium text-slate-800 truncate">{store?.name ?? 'Unknown store'}</div>
                           {store?.code && (
                             <div className="text-[11px] text-slate-400 font-mono">Code: {store.code}</div>
                           )}
                         </td>
-                        <td className="max-w-xs break-all px-4 py-4 text-slate-700 text-xs">
-                          <span className="font-mono text-slate-600 bg-slate-50 px-2 py-1 rounded-md border border-slate-200">
+                        <td className="max-w-[200px] truncate px-4 py-4 text-slate-700 text-xs" title={formatReference(movement)}>
+                          <span className="font-mono text-slate-600 bg-slate-50 px-2 py-1 rounded-md border border-slate-200 truncate inline-block max-w-full">
                             {formatReference(movement)}
                           </span>
                         </td>

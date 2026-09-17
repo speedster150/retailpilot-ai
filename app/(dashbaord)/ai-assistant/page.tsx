@@ -2,30 +2,30 @@ import ChatInterface from './chat-interface'
 
 export default function AIAssistantPage() {
   return (
-    <main className="space-y-8 p-6 max-w-7xl mx-auto">
+    <main className="w-full min-w-0 max-w-7xl mx-auto space-y-6 sm:space-y-8 p-4 sm:p-6">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-slate-200 pb-5">
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 min-w-0">
           <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-600 text-white shadow-xs">
             <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
             </svg>
           </div>
-          <div>
-            <div className="flex items-center gap-3">
-              <h1 className="text-2xl font-bold tracking-tight text-slate-900">RetailPilot AI Copilot</h1>
-              <span className="inline-flex items-center rounded-full bg-indigo-50 px-2.5 py-0.5 text-xs font-semibold text-indigo-700 border border-indigo-200">
+          <div className="min-w-0">
+            <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
+              <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 truncate">RetailPilot AI Copilot</h1>
+              <span className="inline-flex items-center rounded-full bg-indigo-50 px-2.5 py-0.5 text-xs font-semibold text-indigo-700 border border-indigo-200 shrink-0">
                 Autonomous Assistant
               </span>
             </div>
-            <p className="mt-0.5 text-sm text-slate-500">
+            <p className="mt-0.5 text-xs sm:text-sm text-slate-500">
               Autonomous supermarket intelligence, predictive demand forecasting, and inventory risk detection powered by live Model Context Protocol (MCP) database tools.
             </p>
           </div>
         </div>
-        <div className="flex items-center gap-2 text-xs font-medium text-emerald-800 bg-emerald-50 px-3 py-1.5 rounded-full border border-emerald-200 shrink-0">
-          <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-          <span>Intelligence Engine Active · Connected to Ledger</span>
+        <div className="flex items-center gap-2 text-xs font-medium text-emerald-800 bg-emerald-50 px-3 py-1.5 rounded-full border border-emerald-200 shrink-0 self-start sm:self-auto">
+          <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+          <span className="truncate">Intelligence Engine Active · Connected to Ledger</span>
         </div>
       </div>
 

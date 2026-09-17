@@ -282,25 +282,25 @@ export function ReturnsView({
   }
 
   return (
-    <div className="space-y-6">
+    <div className="w-full min-w-0 max-w-full space-y-6">
       {/* Top Header & Primary Action */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between border-b border-slate-200 pb-5">
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 min-w-0">
           <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-rose-600 text-white shadow-xs">
             <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3" />
             </svg>
           </div>
-          <div>
-            <div className="flex items-center gap-3">
-              <h1 className="text-2xl font-bold tracking-tight text-slate-900">
+          <div className="min-w-0">
+            <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
+              <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 truncate">
                 Returns & Reverse Sales
               </h1>
-              <span className="inline-flex items-center rounded-full bg-rose-50 px-2.5 py-0.5 text-xs font-semibold text-rose-700 border border-rose-200">
+              <span className="inline-flex items-center rounded-full bg-rose-50 px-2.5 py-0.5 text-xs font-semibold text-rose-700 border border-rose-200 shrink-0">
                 {returnsList.length} {returnsList.length === 1 ? 'Record' : 'Records'}
               </span>
             </div>
-            <p className="mt-0.5 text-sm text-slate-500">
+            <p className="mt-0.5 text-xs sm:text-sm text-slate-500">
               Issue customer refunds, reverse sales transactions, and automatically synchronize the immutable inventory ledger.
             </p>
           </div>
@@ -316,7 +316,7 @@ export function ReturnsView({
             setInvoiceQuery('')
           }}
           id="btn-create-return"
-          className="inline-flex items-center justify-center gap-2 rounded-lg bg-rose-600 px-4 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-rose-700 active:bg-rose-800 focus:outline-hidden focus:ring-2 focus:ring-rose-500 focus:ring-offset-2 transition"
+          className="inline-flex items-center justify-center gap-2 rounded-lg bg-rose-600 px-4 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-rose-700 active:bg-rose-800 focus:outline-hidden focus:ring-2 focus:ring-rose-500 focus:ring-offset-2 transition w-full sm:w-auto shrink-0"
         >
           <svg className="h-4 w-4 text-rose-200" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
@@ -326,62 +326,62 @@ export function ReturnsView({
       </div>
 
       {/* KPI Overview Metric Cards */}
-      <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-        <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-xs">
-          <div className="flex items-center justify-between">
-            <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">Total Returns</p>
-            <span className="flex h-7 w-7 items-center justify-center rounded-md bg-rose-50 text-rose-700 border border-rose-100 text-xs">
+      <div className="grid grid-cols-2 gap-3 sm:gap-4 sm:grid-cols-4 min-w-0">
+        <div className="rounded-xl border border-slate-200 bg-white p-3.5 sm:p-4 shadow-xs min-w-0">
+          <div className="flex items-center justify-between gap-2">
+            <p className="text-xs font-semibold uppercase tracking-wider text-slate-500 truncate">Total Returns</p>
+            <span className="flex h-7 w-7 items-center justify-center rounded-md bg-rose-50 text-rose-700 border border-rose-100 text-xs shrink-0">
               ↩
             </span>
           </div>
           <div className="mt-2 flex items-baseline gap-2">
-            <span className="text-2xl font-bold text-slate-900">{returnsList.length}</span>
+            <span className="text-xl sm:text-2xl font-bold text-slate-900 truncate">{returnsList.length}</span>
             <span className="text-xs text-slate-400">records</span>
           </div>
         </div>
 
-        <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-xs">
-          <div className="flex items-center justify-between">
-            <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">Refunds Issued</p>
-            <span className="flex h-7 w-7 items-center justify-center rounded-md bg-rose-50 text-rose-700 border border-rose-100 text-xs">
+        <div className="rounded-xl border border-slate-200 bg-white p-3.5 sm:p-4 shadow-xs min-w-0">
+          <div className="flex items-center justify-between gap-2">
+            <p className="text-xs font-semibold uppercase tracking-wider text-slate-500 truncate">Refunds Issued</p>
+            <span className="flex h-7 w-7 items-center justify-center rounded-md bg-rose-50 text-rose-700 border border-rose-100 text-xs shrink-0">
               ₹
             </span>
           </div>
           <div className="mt-2 flex items-baseline gap-2">
-            <span className="text-2xl font-bold text-rose-700">{formatCurrency(totalRefundsValue)}</span>
+            <span className="text-lg sm:text-2xl font-bold text-rose-700 truncate">{formatCurrency(totalRefundsValue)}</span>
           </div>
         </div>
 
-        <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-xs">
-          <div className="flex items-center justify-between">
-            <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">Completed</p>
-            <span className="flex h-7 w-7 items-center justify-center rounded-md bg-emerald-50 text-emerald-700 border border-emerald-100 text-xs">
+        <div className="rounded-xl border border-slate-200 bg-white p-3.5 sm:p-4 shadow-xs min-w-0">
+          <div className="flex items-center justify-between gap-2">
+            <p className="text-xs font-semibold uppercase tracking-wider text-slate-500 truncate">Completed</p>
+            <span className="flex h-7 w-7 items-center justify-center rounded-md bg-emerald-50 text-emerald-700 border border-emerald-100 text-xs shrink-0">
               ✓
             </span>
           </div>
           <div className="mt-2 flex items-baseline gap-2">
-            <span className="text-2xl font-bold text-emerald-700">{completedReturnsCount}</span>
+            <span className="text-xl sm:text-2xl font-bold text-emerald-700 truncate">{completedReturnsCount}</span>
             <span className="text-xs text-emerald-600">finalized</span>
           </div>
         </div>
 
-        <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-xs">
-          <div className="flex items-center justify-between">
-            <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">Pending</p>
-            <span className="flex h-7 w-7 items-center justify-center rounded-md bg-amber-50 text-amber-700 border border-amber-100 text-xs">
+        <div className="rounded-xl border border-slate-200 bg-white p-3.5 sm:p-4 shadow-xs min-w-0">
+          <div className="flex items-center justify-between gap-2">
+            <p className="text-xs font-semibold uppercase tracking-wider text-slate-500 truncate">Pending</p>
+            <span className="flex h-7 w-7 items-center justify-center rounded-md bg-amber-50 text-amber-700 border border-amber-100 text-xs shrink-0">
               ⏳
             </span>
           </div>
           <div className="mt-2 flex items-baseline gap-2">
-            <span className="text-2xl font-bold text-amber-700">{pendingReturnsCount}</span>
+            <span className="text-xl sm:text-2xl font-bold text-amber-700 truncate">{pendingReturnsCount}</span>
             <span className="text-xs text-amber-600">active</span>
           </div>
         </div>
       </div>
 
       {/* Search & Filter Bar */}
-      <div className="bg-white p-3.5 rounded-xl border border-slate-200 shadow-2xs flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
-        <div className="relative flex-1">
+      <div className="bg-white p-3.5 rounded-xl border border-slate-200 shadow-2xs flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 w-full min-w-0 max-w-full">
+        <div className="relative flex-1 min-w-0">
           <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5">
             <svg className="h-4 w-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -405,18 +405,18 @@ export function ReturnsView({
           )}
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center justify-between sm:justify-end gap-2.5 min-w-0">
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="rounded-lg border border-slate-300 bg-slate-50/50 px-3 py-2 text-sm text-slate-700 shadow-2xs focus:border-rose-500 focus:bg-white focus:outline-hidden focus:ring-2 focus:ring-rose-500/20 transition"
+            className="flex-1 sm:flex-initial rounded-lg border border-slate-300 bg-slate-50/50 px-3 py-2 text-sm text-slate-700 shadow-2xs focus:border-rose-500 focus:bg-white focus:outline-hidden focus:ring-2 focus:ring-rose-500/20 transition min-w-[130px]"
           >
             <option value="ALL">All Statuses</option>
             <option value="COMPLETED">Completed Only</option>
             <option value="PENDING">Pending / Other</option>
           </select>
 
-          <span className="text-xs text-slate-500 whitespace-nowrap pl-1">
+          <span className="text-xs text-slate-500 whitespace-nowrap pl-1 shrink-0">
             Showing <strong>{filteredReturns.length}</strong> of {returnsList.length}
           </span>
         </div>
@@ -468,19 +468,19 @@ export function ReturnsView({
           </div>
         </section>
       ) : (
-        <section className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-xs">
-          <div className="overflow-x-auto">
-            <table className="min-w-[1050px] w-full text-left text-sm">
+        <section className="w-full min-w-0 max-w-full overflow-hidden rounded-xl border border-slate-200 bg-white shadow-xs">
+          <div className="w-full overflow-x-auto overscroll-x-contain" style={{ WebkitOverflowScrolling: 'touch' }}>
+            <table className="min-w-[950px] w-full text-left text-sm">
               <thead className="border-b border-slate-200 bg-slate-50/80 text-xs font-semibold uppercase tracking-wider text-slate-600">
                 <tr>
-                  <th scope="col" className="px-5 py-3.5">Return Number</th>
-                  <th scope="col" className="px-4 py-3.5">Original Invoice</th>
-                  <th scope="col" className="px-4 py-3.5">Customer</th>
-                  <th scope="col" className="px-4 py-3.5 text-center">Status</th>
-                  <th scope="col" className="px-4 py-3.5">Return Reason</th>
-                  <th scope="col" className="px-4 py-3.5 text-right">Refund Amount</th>
-                  <th scope="col" className="px-4 py-3.5">Returned Date</th>
-                  <th scope="col" className="px-5 py-3.5 text-center">Action</th>
+                  <th scope="col" className="whitespace-nowrap px-4 sm:px-5 py-3.5">Return Number</th>
+                  <th scope="col" className="whitespace-nowrap px-4 py-3.5">Original Invoice</th>
+                  <th scope="col" className="whitespace-nowrap px-4 py-3.5">Customer</th>
+                  <th scope="col" className="whitespace-nowrap px-4 py-3.5 text-center">Status</th>
+                  <th scope="col" className="whitespace-nowrap px-4 py-3.5">Return Reason</th>
+                  <th scope="col" className="whitespace-nowrap px-4 py-3.5 text-right">Refund Amount</th>
+                  <th scope="col" className="whitespace-nowrap px-4 py-3.5">Returned Date</th>
+                  <th scope="col" className="whitespace-nowrap px-4 sm:px-5 py-3.5 text-center">Action</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
@@ -596,8 +596,8 @@ export function ReturnsView({
                 <label htmlFor="return-invoice-search" className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1.5">
                   1. Search Original Invoice Number *
                 </label>
-                <div className="flex gap-2">
-                  <div className="relative flex-1">
+                <div className="flex flex-col sm:flex-row gap-2.5">
+                  <div className="relative flex-1 min-w-0">
                     <input
                       id="return-invoice-search"
                       type="text"
@@ -618,7 +618,7 @@ export function ReturnsView({
                     onClick={handleLookup}
                     disabled={isLookingUp}
                     id="btn-lookup-invoice"
-                    className="inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-700 active:bg-indigo-800 disabled:opacity-60 transition"
+                    className="inline-flex items-center justify-center gap-2 rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-700 active:bg-indigo-800 disabled:opacity-60 transition w-full sm:w-auto shrink-0"
                   >
                     {isLookingUp ? (
                       <>
@@ -669,19 +669,20 @@ export function ReturnsView({
                     <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-700 mb-2">
                       2. Purchased Merchandise & Return Quantities
                     </h3>
-                    <div className="border border-slate-200 rounded-xl overflow-hidden shadow-2xs">
-                      <table className="min-w-full text-xs text-left">
-                        <thead className="bg-slate-50 text-slate-600 font-semibold border-b border-slate-200">
-                          <tr>
-                            <th className="px-3.5 py-2.5">Product</th>
-                            <th className="px-3 py-2.5 text-center">Sold Qty</th>
-                            <th className="px-3 py-2.5 text-center">Already Ret.</th>
-                            <th className="px-3 py-2.5 text-center">Returnable</th>
-                            <th className="px-3 py-2.5 text-right">Unit Price</th>
-                            <th className="px-3 py-2.5 text-center w-36">Return Qty</th>
-                            <th className="px-3.5 py-2.5 text-right">Refund Total</th>
-                          </tr>
-                        </thead>
+                    <div className="border border-slate-200 rounded-xl overflow-hidden shadow-2xs w-full max-w-full">
+                      <div className="w-full overflow-x-auto overscroll-x-contain" style={{ WebkitOverflowScrolling: 'touch' }}>
+                        <table className="min-w-[550px] w-full text-xs text-left">
+                          <thead className="bg-slate-50 text-slate-600 font-semibold border-b border-slate-200">
+                            <tr>
+                              <th className="whitespace-nowrap px-3.5 py-2.5">Product</th>
+                              <th className="whitespace-nowrap px-3 py-2.5 text-center">Sold Qty</th>
+                              <th className="whitespace-nowrap px-3 py-2.5 text-center">Already Ret.</th>
+                              <th className="whitespace-nowrap px-3 py-2.5 text-center">Returnable</th>
+                              <th className="whitespace-nowrap px-3 py-2.5 text-right">Unit Price</th>
+                              <th className="whitespace-nowrap px-3 py-2.5 text-center w-36">Return Qty</th>
+                              <th className="whitespace-nowrap px-3.5 py-2.5 text-right">Refund Total</th>
+                            </tr>
+                          </thead>
                         <tbody className="divide-y divide-slate-100">
                           {lookupResult.items.map((item) => {
                             const currentReturnQty = returnQuantities[item.productId] || 0
@@ -755,6 +756,7 @@ export function ReturnsView({
                           })}
                         </tbody>
                       </table>
+                      </div>
                     </div>
                   </div>
 
@@ -1052,36 +1054,38 @@ export function ReturnsView({
 
                   <div>
                     <h4 className="text-xs font-semibold uppercase text-slate-700 mb-2">Restocked Items</h4>
-                    <div className="border border-slate-200 rounded-xl overflow-hidden shadow-2xs">
-                      <table className="min-w-full text-xs text-left">
-                        <thead className="bg-slate-50 text-slate-600 font-semibold border-b border-slate-200">
-                          <tr>
-                            <th className="px-3.5 py-2.5">Product</th>
-                            <th className="px-3.5 py-2.5 text-center">Restocked Qty</th>
-                            <th className="px-3.5 py-2.5 text-right">Unit Price</th>
-                            <th className="px-3.5 py-2.5 text-right">Refund Total</th>
-                          </tr>
-                        </thead>
-                        <tbody className="divide-y divide-slate-100">
-                          {selectedReturnDetails.items.map((it) => (
-                            <tr key={it.id}>
-                              <td className="px-3.5 py-2.5">
-                                <span className="font-semibold text-slate-900">{it.productName}</span>
-                                {it.sku && <span className="text-slate-400 font-mono ml-2">SKU: {it.sku}</span>}
-                              </td>
-                              <td className="px-3.5 py-2.5 text-center font-bold text-emerald-700 font-mono">
-                                +{it.quantity}
-                              </td>
-                              <td className="px-3.5 py-2.5 text-right text-slate-600 font-mono">
-                                {formatCurrency(it.unitPrice)}
-                              </td>
-                              <td className="px-3.5 py-2.5 text-right font-bold text-slate-900 font-mono">
-                                {formatCurrency(it.refundAmount)}
-                              </td>
+                    <div className="border border-slate-200 rounded-xl overflow-hidden shadow-2xs w-full max-w-full">
+                      <div className="w-full overflow-x-auto overscroll-x-contain" style={{ WebkitOverflowScrolling: 'touch' }}>
+                        <table className="min-w-[450px] w-full text-xs text-left">
+                          <thead className="bg-slate-50 text-slate-600 font-semibold border-b border-slate-200">
+                            <tr>
+                              <th className="whitespace-nowrap px-3.5 py-2.5">Product</th>
+                              <th className="whitespace-nowrap px-3.5 py-2.5 text-center">Restocked Qty</th>
+                              <th className="whitespace-nowrap px-3.5 py-2.5 text-right">Unit Price</th>
+                              <th className="whitespace-nowrap px-3.5 py-2.5 text-right">Refund Total</th>
                             </tr>
-                          ))}
-                        </tbody>
-                      </table>
+                          </thead>
+                          <tbody className="divide-y divide-slate-100">
+                            {selectedReturnDetails.items.map((it) => (
+                              <tr key={it.id}>
+                                <td className="px-3.5 py-2.5">
+                                  <span className="font-semibold text-slate-900">{it.productName}</span>
+                                  {it.sku && <span className="text-slate-400 font-mono ml-2">SKU: {it.sku}</span>}
+                                </td>
+                                <td className="px-3.5 py-2.5 text-center font-bold text-emerald-700 font-mono">
+                                  +{it.quantity}
+                                </td>
+                                <td className="px-3.5 py-2.5 text-right text-slate-600 font-mono">
+                                  {formatCurrency(it.unitPrice)}
+                                </td>
+                                <td className="px-3.5 py-2.5 text-right font-bold text-slate-900 font-mono">
+                                  {formatCurrency(it.refundAmount)}
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
                     </div>
                   </div>
 

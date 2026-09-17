@@ -306,22 +306,22 @@ export default function CustomerManagement({
   }, [customers, normalizedQuery, statusFilter, tierFilter])
 
   return (
-    <main className="space-y-6 p-6 max-w-7xl mx-auto">
+    <main className="w-full min-w-0 max-w-7xl mx-auto space-y-6 p-4 sm:p-6">
       {/* Page Header */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between border-b border-slate-200 pb-5">
-        <div>
-          <div className="flex items-center gap-3">
+        <div className="min-w-0">
+          <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
             <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-blue-600 text-white shadow-2xs shrink-0">
               <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
               </svg>
             </span>
-            <h1 className="text-2xl font-bold tracking-tight text-slate-900">Customers</h1>
-            <span className="inline-flex items-center rounded-full bg-blue-50 px-2.5 py-0.5 text-xs font-semibold text-blue-700 border border-blue-200">
+            <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 truncate">Customers</h1>
+            <span className="inline-flex items-center rounded-full bg-blue-50 px-2.5 py-0.5 text-xs font-semibold text-blue-700 border border-blue-200 shrink-0">
               {customers.length} {customers.length === 1 ? 'Customer' : 'Customers'}
             </span>
           </div>
-          <p className="mt-1 text-sm text-slate-500">
+          <p className="mt-1 text-xs sm:text-sm text-slate-500">
             Manage customer directories, loyalty point balances, and purchase activity.
           </p>
         </div>
@@ -329,7 +329,7 @@ export default function CustomerManagement({
         <button
           type="button"
           onClick={() => setIsFormOpen((open) => !open)}
-          className={`inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold shadow-xs transition ${
+          className={`inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold shadow-xs transition w-full sm:w-auto shrink-0 ${
             isFormOpen
               ? 'border border-slate-300 bg-white text-slate-700 hover:bg-slate-50'
               : 'bg-blue-600 text-white hover:bg-blue-700 active:bg-blue-800 focus:outline-hidden focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'
@@ -337,14 +337,14 @@ export default function CustomerManagement({
         >
           {isFormOpen ? (
             <>
-              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
               </svg>
               <span>Close Form</span>
             </>
           ) : (
             <>
-              <svg className="h-4 w-4 text-blue-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+              <svg className="h-4 w-4 text-blue-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
               </svg>
               <span>+ Add Customer</span>
@@ -354,64 +354,64 @@ export default function CustomerManagement({
       </div>
 
       {/* KPI Overview Cards */}
-      <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-        <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-xs">
-          <div className="flex items-center justify-between">
-            <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">Registered Accounts</p>
-            <span className="flex h-7 w-7 items-center justify-center rounded-md bg-blue-50 text-blue-700 border border-blue-100 text-xs">
+      <div className="grid grid-cols-2 gap-3 sm:gap-4 sm:grid-cols-4 min-w-0">
+        <div className="rounded-xl border border-slate-200 bg-white p-3.5 sm:p-4 shadow-xs min-w-0">
+          <div className="flex items-center justify-between gap-2">
+            <p className="text-xs font-semibold uppercase tracking-wider text-slate-500 truncate">Registered Accounts</p>
+            <span className="flex h-7 w-7 items-center justify-center rounded-md bg-blue-50 text-blue-700 border border-blue-100 text-xs shrink-0">
               👥
             </span>
           </div>
           <div className="mt-2 flex items-baseline gap-2">
-            <span className="text-2xl font-bold text-slate-900">{customers.length}</span>
+            <span className="text-xl sm:text-2xl font-bold text-slate-900 truncate">{customers.length}</span>
             <span className="text-xs text-slate-400">profiles</span>
           </div>
         </div>
 
-        <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-xs">
-          <div className="flex items-center justify-between">
-            <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">Active Accounts</p>
-            <span className="flex h-7 w-7 items-center justify-center rounded-md bg-emerald-50 text-emerald-700 border border-emerald-100 text-xs">
+        <div className="rounded-xl border border-slate-200 bg-white p-3.5 sm:p-4 shadow-xs min-w-0">
+          <div className="flex items-center justify-between gap-2">
+            <p className="text-xs font-semibold uppercase tracking-wider text-slate-500 truncate">Active Accounts</p>
+            <span className="flex h-7 w-7 items-center justify-center rounded-md bg-emerald-50 text-emerald-700 border border-emerald-100 text-xs shrink-0">
               ✓
             </span>
           </div>
           <div className="mt-2 flex items-baseline gap-2">
-            <span className="text-2xl font-bold text-emerald-700">{activeCount}</span>
+            <span className="text-xl sm:text-2xl font-bold text-emerald-700 truncate">{activeCount}</span>
             <span className="text-xs text-emerald-600">verified</span>
           </div>
         </div>
 
-        <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-xs">
-          <div className="flex items-center justify-between">
-            <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">Loyalty Points</p>
-            <span className="flex h-7 w-7 items-center justify-center rounded-md bg-amber-50 text-amber-700 border border-amber-100 text-xs">
+        <div className="rounded-xl border border-slate-200 bg-white p-3.5 sm:p-4 shadow-xs min-w-0">
+          <div className="flex items-center justify-between gap-2">
+            <p className="text-xs font-semibold uppercase tracking-wider text-slate-500 truncate">Loyalty Points</p>
+            <span className="flex h-7 w-7 items-center justify-center rounded-md bg-amber-50 text-amber-700 border border-amber-100 text-xs shrink-0">
               ★
             </span>
           </div>
           <div className="mt-2 flex items-baseline gap-2">
-            <span className="text-2xl font-bold text-amber-700">{totalPoints.toLocaleString('en-IN')}</span>
+            <span className="text-lg sm:text-2xl font-bold text-amber-700 truncate">{totalPoints.toLocaleString('en-IN')}</span>
             <span className="text-xs text-amber-600">pts</span>
           </div>
         </div>
 
-        <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-xs">
-          <div className="flex items-center justify-between">
-            <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">Lifetime Spend</p>
-            <span className="flex h-7 w-7 items-center justify-center rounded-md bg-indigo-50 text-indigo-700 border border-indigo-100 text-xs">
+        <div className="rounded-xl border border-slate-200 bg-white p-3.5 sm:p-4 shadow-xs min-w-0">
+          <div className="flex items-center justify-between gap-2">
+            <p className="text-xs font-semibold uppercase tracking-wider text-slate-500 truncate">Lifetime Spend</p>
+            <span className="flex h-7 w-7 items-center justify-center rounded-md bg-indigo-50 text-indigo-700 border border-indigo-100 text-xs shrink-0">
               ₹
             </span>
           </div>
           <div className="mt-2 flex items-baseline gap-2">
-            <span className="text-2xl font-bold text-indigo-700">{formatCurrency(totalSpendTracked)}</span>
+            <span className="text-lg sm:text-2xl font-bold text-indigo-700 truncate">{formatCurrency(totalSpendTracked)}</span>
           </div>
         </div>
       </div>
 
       {/* Add Customer Form Drawer */}
       {isFormOpen && (
-        <section className="rounded-xl border border-indigo-100 bg-white p-6 shadow-md transition-all">
+        <section className="rounded-xl border border-indigo-100 bg-white p-4 sm:p-6 shadow-md transition-all w-full min-w-0 max-w-full">
           <div className="border-b border-slate-200 pb-4 mb-5">
-            <h2 className="text-lg font-bold text-slate-900">Add New Customer</h2>
+            <h2 className="text-base sm:text-lg font-bold text-slate-900">Add New Customer</h2>
             <p className="mt-1 text-xs text-slate-500">
               Register a customer profile to track POS purchases, accrue loyalty point rewards, and enable return lookups.
             </p>
@@ -421,8 +421,8 @@ export default function CustomerManagement({
       )}
 
       {/* Search and Multi-Filter Bar */}
-      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-white p-3.5 rounded-xl border border-slate-200 shadow-2xs">
-        <div className="relative flex-1">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-white p-3.5 rounded-xl border border-slate-200 shadow-2xs w-full min-w-0 max-w-full">
+        <div className="relative flex-1 min-w-0">
           <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5">
             <svg className="h-4 w-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -446,11 +446,11 @@ export default function CustomerManagement({
           )}
         </div>
 
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2 min-w-0">
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-700 shadow-2xs focus:border-indigo-500 focus:outline-hidden focus:ring-2 focus:ring-indigo-500/20 transition"
+            className="flex-1 sm:flex-initial rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-700 shadow-2xs focus:border-indigo-500 focus:outline-hidden focus:ring-2 focus:ring-indigo-500/20 transition min-w-[120px]"
           >
             <option value="ALL">All Accounts</option>
             <option value="ACTIVE">Active Only</option>
@@ -460,7 +460,7 @@ export default function CustomerManagement({
           <select
             value={tierFilter}
             onChange={(e) => setTierFilter(e.target.value)}
-            className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-700 shadow-2xs focus:border-indigo-500 focus:outline-hidden focus:ring-2 focus:ring-indigo-500/20 transition"
+            className="flex-1 sm:flex-initial rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-700 shadow-2xs focus:border-indigo-500 focus:outline-hidden focus:ring-2 focus:ring-indigo-500/20 transition min-w-[140px]"
           >
             <option value="ALL">All Loyalty Tiers</option>
             <option value="GOLD">Gold (500+ pts)</option>
@@ -468,7 +468,7 @@ export default function CustomerManagement({
             <option value="BRONZE">Bronze (&lt;100 pts)</option>
           </select>
 
-          <span className="text-xs text-slate-500 whitespace-nowrap pl-1">
+          <span className="text-xs text-slate-500 whitespace-nowrap pl-1 shrink-0">
             Showing <strong>{filteredCustomers.length}</strong> of {customers.length}
           </span>
         </div>
@@ -522,17 +522,17 @@ export default function CustomerManagement({
           </button>
         </section>
       ) : (
-        <section className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-xs">
-          <div className="overflow-x-auto">
-            <table className="min-w-[1000px] w-full text-left text-sm">
+        <section className="w-full min-w-0 max-w-full overflow-hidden rounded-xl border border-slate-200 bg-white shadow-xs">
+          <div className="w-full overflow-x-auto overscroll-x-contain" style={{ WebkitOverflowScrolling: 'touch' }}>
+            <table className="min-w-[900px] w-full text-left text-sm">
               <thead className="border-b border-slate-200 bg-slate-50/80 text-xs font-semibold uppercase tracking-wider text-slate-600">
                 <tr>
-                  <th scope="col" className="px-5 py-3.5">Customer</th>
-                  <th scope="col" className="px-4 py-3.5">Contact Channels</th>
-                  <th scope="col" className="px-4 py-3.5">Loyalty Rewards</th>
-                  <th scope="col" className="px-4 py-3.5">Purchase Activity</th>
-                  <th scope="col" className="px-4 py-3.5">Delivery Address</th>
-                  <th scope="col" className="px-5 py-3.5 text-center">Status</th>
+                  <th scope="col" className="whitespace-nowrap px-4 sm:px-5 py-3.5">Customer</th>
+                  <th scope="col" className="whitespace-nowrap px-4 py-3.5">Contact Channels</th>
+                  <th scope="col" className="whitespace-nowrap px-4 py-3.5">Loyalty Rewards</th>
+                  <th scope="col" className="whitespace-nowrap px-4 py-3.5">Purchase Activity</th>
+                  <th scope="col" className="whitespace-nowrap px-4 py-3.5">Delivery Address</th>
+                  <th scope="col" className="whitespace-nowrap px-4 sm:px-5 py-3.5 text-center">Status</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">

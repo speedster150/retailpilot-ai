@@ -597,11 +597,11 @@ export default function GoodsReceiptManagement({
   }, [receipts, searchQuery, statusFilter])
 
   return (
-    <main className="space-y-6 p-6 max-w-7xl mx-auto">
+    <main className="w-full min-w-0 max-w-7xl mx-auto space-y-6 p-4 sm:p-6">
       {/* Page Header */}
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between border-b border-slate-200 pb-5">
-        <div>
-          <div className="flex items-center gap-3">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between border-b border-slate-200 pb-5 min-w-0">
+        <div className="min-w-0 flex-1">
+          <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
             <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-sky-600 text-white shadow-2xs shrink-0">
               <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
@@ -612,7 +612,7 @@ export default function GoodsReceiptManagement({
               {receipts.length} {receipts.length === 1 ? 'Receipt' : 'Receipts'}
             </span>
           </div>
-          <p className="mt-1 text-sm text-slate-500">
+          <p className="mt-1 text-sm text-slate-500 break-words">
             Record physical stock arrivals against purchase orders and post verified ledger movements.
           </p>
         </div>
@@ -620,7 +620,7 @@ export default function GoodsReceiptManagement({
         <button
           type="button"
           onClick={() => setIsFormOpen((open) => !open)}
-          className={`inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold shadow-xs transition ${
+          className={`inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold shadow-xs transition w-full sm:w-auto shrink-0 max-w-full text-center ${
             isFormOpen
               ? 'border border-slate-300 bg-white text-slate-700 hover:bg-slate-50'
               : 'bg-sky-600 text-white hover:bg-sky-700 active:bg-sky-800 focus:outline-hidden focus:ring-2 focus:ring-sky-500 focus:ring-offset-2'
@@ -628,14 +628,14 @@ export default function GoodsReceiptManagement({
         >
           {isFormOpen ? (
             <>
-              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
               </svg>
               <span>Close Form</span>
             </>
           ) : (
             <>
-              <svg className="h-4 w-4 text-sky-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+              <svg className="h-4 w-4 text-sky-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
               </svg>
               <span>+ Create Goods Receipt</span>
@@ -645,55 +645,55 @@ export default function GoodsReceiptManagement({
       </div>
 
       {/* KPI Overview Cards */}
-      <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-        <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-xs">
-          <div className="flex items-center justify-between">
-            <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">Total Receipts</p>
-            <span className="flex h-7 w-7 items-center justify-center rounded-md bg-sky-50 text-sky-700 border border-sky-100 text-xs">
+      <div className="grid grid-cols-2 gap-3 sm:gap-4 sm:grid-cols-4 min-w-0">
+        <div className="rounded-xl border border-slate-200 bg-white p-3.5 sm:p-4 shadow-xs min-w-0">
+          <div className="flex items-center justify-between gap-1">
+            <p className="text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-slate-500 truncate" title="Total Receipts">Total Receipts</p>
+            <span className="flex h-7 w-7 items-center justify-center rounded-md bg-sky-50 text-sky-700 border border-sky-100 text-xs shrink-0">
               📥
             </span>
           </div>
-          <div className="mt-2 flex items-baseline gap-2">
-            <span className="text-2xl font-bold text-slate-900">{receipts.length}</span>
+          <div className="mt-2 flex items-baseline gap-1.5 flex-wrap">
+            <span className="text-xl sm:text-2xl font-bold text-slate-900 truncate">{receipts.length}</span>
             <span className="text-xs text-slate-400">records</span>
           </div>
         </div>
 
-        <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-xs">
-          <div className="flex items-center justify-between">
-            <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">Ledger Posted</p>
-            <span className="flex h-7 w-7 items-center justify-center rounded-md bg-emerald-50 text-emerald-700 border border-emerald-100 text-xs">
+        <div className="rounded-xl border border-slate-200 bg-white p-3.5 sm:p-4 shadow-xs min-w-0">
+          <div className="flex items-center justify-between gap-1">
+            <p className="text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-slate-500 truncate" title="Ledger Posted">Ledger Posted</p>
+            <span className="flex h-7 w-7 items-center justify-center rounded-md bg-emerald-50 text-emerald-700 border border-emerald-100 text-xs shrink-0">
               ✓
             </span>
           </div>
-          <div className="mt-2 flex items-baseline gap-2">
-            <span className="text-2xl font-bold text-emerald-700">{receivedCount}</span>
+          <div className="mt-2 flex items-baseline gap-1.5 flex-wrap">
+            <span className="text-xl sm:text-2xl font-bold text-emerald-700 truncate">{receivedCount}</span>
             <span className="text-xs text-emerald-600">received</span>
           </div>
         </div>
 
-        <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-xs">
-          <div className="flex items-center justify-between">
-            <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">Draft Receipts</p>
-            <span className="flex h-7 w-7 items-center justify-center rounded-md bg-amber-50 text-amber-700 border border-amber-100 text-xs">
+        <div className="rounded-xl border border-slate-200 bg-white p-3.5 sm:p-4 shadow-xs min-w-0">
+          <div className="flex items-center justify-between gap-1">
+            <p className="text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-slate-500 truncate" title="Draft Receipts">Draft Receipts</p>
+            <span className="flex h-7 w-7 items-center justify-center rounded-md bg-amber-50 text-amber-700 border border-amber-100 text-xs shrink-0">
               ⏳
             </span>
           </div>
-          <div className="mt-2 flex items-baseline gap-2">
-            <span className="text-2xl font-bold text-amber-700">{draftCount}</span>
+          <div className="mt-2 flex items-baseline gap-1.5 flex-wrap">
+            <span className="text-xl sm:text-2xl font-bold text-amber-700 truncate">{draftCount}</span>
             <span className="text-xs text-amber-600">unposted</span>
           </div>
         </div>
 
-        <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-xs">
-          <div className="flex items-center justify-between">
-            <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">Units Received</p>
-            <span className="flex h-7 w-7 items-center justify-center rounded-md bg-slate-100 text-slate-600 border border-slate-200 text-xs">
+        <div className="rounded-xl border border-slate-200 bg-white p-3.5 sm:p-4 shadow-xs min-w-0">
+          <div className="flex items-center justify-between gap-1">
+            <p className="text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-slate-500 truncate" title="Units Received">Units Received</p>
+            <span className="flex h-7 w-7 items-center justify-center rounded-md bg-slate-100 text-slate-600 border border-slate-200 text-xs shrink-0">
               🔢
             </span>
           </div>
-          <div className="mt-2 flex items-baseline gap-2">
-            <span className="text-2xl font-bold text-slate-900">{totalUnitsReceived.toLocaleString('en-IN')}</span>
+          <div className="mt-2 flex items-baseline gap-1.5 flex-wrap">
+            <span className="text-xl sm:text-2xl font-bold text-slate-900 truncate">{totalUnitsReceived.toLocaleString('en-IN')}</span>
             <span className="text-xs text-slate-400">units</span>
           </div>
         </div>
@@ -701,7 +701,7 @@ export default function GoodsReceiptManagement({
 
       {/* Create Goods Receipt Form Drawer/Panel */}
       {isFormOpen && (
-        <section className="rounded-xl border border-indigo-100 bg-white p-6 shadow-md transition-all">
+        <section className="w-full min-w-0 max-w-full overflow-hidden rounded-xl border border-indigo-100 bg-white p-4 sm:p-6 shadow-md transition-all">
           <div className="border-b border-slate-200 pb-4 mb-5">
             <div className="flex items-center gap-2">
               <h2 className="text-lg font-bold text-slate-900">New Goods Receipt</h2>
@@ -722,11 +722,11 @@ export default function GoodsReceiptManagement({
       )}
 
       {/* Search and Filters Bar */}
-      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-white p-3.5 rounded-xl border border-slate-200 shadow-2xs">
-        <div className="relative flex-1">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-white p-3.5 rounded-xl border border-slate-200 shadow-2xs w-full min-w-0 max-w-full">
+        <div className="relative flex-1 min-w-0">
           <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5">
             <svg className="h-4 w-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
           </div>
           <input
@@ -747,18 +747,18 @@ export default function GoodsReceiptManagement({
           )}
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center justify-between sm:justify-end gap-2.5 min-w-0">
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-700 shadow-2xs focus:border-indigo-500 focus:outline-hidden focus:ring-2 focus:ring-indigo-500/20 transition"
+            className="flex-1 sm:flex-initial rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-700 shadow-2xs focus:border-indigo-500 focus:outline-hidden focus:ring-2 focus:ring-indigo-500/20 transition min-w-[140px]"
           >
             <option value="ALL">All Statuses</option>
             <option value="RECEIVED">Received (Ledger Posted)</option>
             <option value="DRAFT">Draft (Unposted)</option>
           </select>
 
-          <span className="text-xs text-slate-500 whitespace-nowrap pl-1">
+          <span className="text-xs text-slate-500 whitespace-nowrap pl-1 shrink-0">
             Showing <strong>{filteredReceipts.length}</strong> of {receipts.length}
           </span>
         </div>
@@ -766,7 +766,7 @@ export default function GoodsReceiptManagement({
 
       {/* Main Table / Empty States */}
       {receipts.length === 0 ? (
-        <section className="rounded-xl border border-dashed border-slate-300 bg-slate-50/50 p-10 text-center shadow-xs">
+        <section className="w-full min-w-0 max-w-full overflow-hidden rounded-xl border border-dashed border-slate-300 bg-slate-50/50 p-6 sm:p-10 text-center shadow-xs">
           <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-slate-100 text-slate-400 mb-3">
             <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -782,14 +782,14 @@ export default function GoodsReceiptManagement({
             <button
               type="button"
               onClick={() => setIsFormOpen(true)}
-              className="inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-700 transition"
+              className="inline-flex items-center justify-center gap-2 rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-700 transition w-full sm:w-auto"
             >
               + Create First Goods Receipt
             </button>
           </div>
         </section>
       ) : filteredReceipts.length === 0 ? (
-        <section className="rounded-xl border border-dashed border-slate-300 bg-slate-50/50 p-8 text-center shadow-xs">
+        <section className="w-full min-w-0 max-w-full overflow-hidden rounded-xl border border-dashed border-slate-300 bg-slate-50/50 p-6 sm:p-8 text-center shadow-xs">
           <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-slate-400 mb-2">
             <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -805,41 +805,41 @@ export default function GoodsReceiptManagement({
               setSearchQuery('')
               setStatusFilter('ALL')
             }}
-            className="mt-3 inline-flex items-center gap-1 rounded-md border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-50 shadow-2xs"
+            className="mt-3 inline-flex items-center justify-center gap-1 rounded-md border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-50 shadow-2xs w-full sm:w-auto"
           >
             Clear Filters
           </button>
         </section>
       ) : (
-        <section className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-xs">
-          <div className="overflow-x-auto">
-            <table className="min-w-[1000px] w-full text-left text-sm">
+        <section className="w-full min-w-0 max-w-full overflow-hidden rounded-xl border border-slate-200 bg-white shadow-xs">
+          <div className="w-full overflow-x-auto overscroll-x-contain" style={{ WebkitOverflowScrolling: 'touch' }}>
+            <table className="min-w-[950px] w-full text-left text-sm">
               <thead className="border-b border-slate-200 bg-slate-50/80 text-xs font-semibold uppercase tracking-wider text-slate-600">
                 <tr>
-                  <th scope="col" className="px-5 py-3.5">GRN Number</th>
-                  <th scope="col" className="px-4 py-3.5">Purchase Order</th>
-                  <th scope="col" className="px-4 py-3.5">Receiving Store</th>
-                  <th scope="col" className="px-4 py-3.5">Received Date</th>
-                  <th scope="col" className="px-4 py-3.5">Status</th>
-                  <th scope="col" className="px-4 py-3.5 text-right">Units Received</th>
-                  <th scope="col" className="px-4 py-3.5">Notes</th>
-                  <th scope="col" className="px-5 py-3.5 text-right">Ledger Actions</th>
+                  <th scope="col" className="px-4 sm:px-5 py-3.5 whitespace-nowrap">GRN Number</th>
+                  <th scope="col" className="px-3 sm:px-4 py-3.5 whitespace-nowrap">Purchase Order</th>
+                  <th scope="col" className="px-3 sm:px-4 py-3.5 whitespace-nowrap">Receiving Store</th>
+                  <th scope="col" className="px-3 sm:px-4 py-3.5 whitespace-nowrap">Received Date</th>
+                  <th scope="col" className="px-3 sm:px-4 py-3.5 whitespace-nowrap">Status</th>
+                  <th scope="col" className="px-3 sm:px-4 py-3.5 text-right whitespace-nowrap">Units Received</th>
+                  <th scope="col" className="px-4 sm:px-5 py-3.5 whitespace-nowrap">Notes</th>
+                  <th scope="col" className="px-4 sm:px-5 py-3.5 text-right whitespace-nowrap">Ledger Actions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
                 {filteredReceipts.map((receipt) => (
                   <tr key={receipt.id} className="hover:bg-slate-50/60 transition-colors">
-                    <td className="whitespace-nowrap px-5 py-4">
+                    <td className="whitespace-nowrap px-4 sm:px-5 py-4">
                       <span className="font-mono font-bold text-slate-900 bg-slate-100 px-2 py-0.5 rounded-md border border-slate-200 text-xs">
                         {receipt.receipt_number ?? '—'}
                       </span>
                     </td>
-                    <td className="px-4 py-4">
+                    <td className="px-3 sm:px-4 py-4 whitespace-nowrap">
                       <span className="font-mono font-medium text-slate-800 text-xs">
                         {receipt.purchase_orders?.[0]?.po_number ?? '—'}
                       </span>
                     </td>
-                    <td className="px-4 py-4 text-slate-700">
+                    <td className="px-3 sm:px-4 py-4 text-slate-700 max-w-[160px] sm:max-w-xs truncate" title={`${receipt.stores?.[0]?.name ?? ''} ${receipt.stores?.[0]?.code ? `(${receipt.stores[0].code})` : ''}`}>
                       <span className="font-medium text-slate-800">{receipt.stores?.[0]?.name ?? '—'}</span>
                       {receipt.stores?.[0]?.code && (
                         <span className="ml-1 text-[11px] font-mono text-slate-400">
@@ -847,26 +847,26 @@ export default function GoodsReceiptManagement({
                         </span>
                       )}
                     </td>
-                    <td className="whitespace-nowrap px-4 py-4 text-slate-600 text-xs">
+                    <td className="whitespace-nowrap px-3 sm:px-4 py-4 text-slate-600 text-xs">
                       {formatDate(receipt.received_date)}
                     </td>
-                    <td className="px-4 py-4">
+                    <td className="px-3 sm:px-4 py-4 whitespace-nowrap">
                       {getStatusBadge(receipt.status)}
                     </td>
-                    <td className="whitespace-nowrap px-4 py-4 text-right">
+                    <td className="whitespace-nowrap px-3 sm:px-4 py-4 text-right">
                       <span className="font-bold text-slate-900 font-mono">
                         {toNumber(itemCounts.get(receipt.id)).toLocaleString('en-IN')}
                       </span>
                       <span className="text-xs text-slate-400 ml-1">units</span>
                     </td>
-                    <td className="max-w-xs px-4 py-4 text-slate-600 text-xs truncate" title={receipt.notes ?? ''}>
+                    <td className="max-w-[200px] px-4 sm:px-5 py-4 text-slate-600 text-xs truncate" title={receipt.notes ?? ''}>
                       {receipt.notes ? (
                         <span className="truncate block">{receipt.notes}</span>
                       ) : (
                         <span className="text-slate-400">—</span>
                       )}
                     </td>
-                    <td className="whitespace-nowrap px-5 py-4 text-right">
+                    <td className="whitespace-nowrap px-4 sm:px-5 py-4 text-right">
                       {receipt.status === 'draft' ? (
                         <CompleteReceiptForm receiptId={receipt.id} />
                       ) : (
@@ -886,3 +886,4 @@ export default function GoodsReceiptManagement({
     </main>
   )
 }
+

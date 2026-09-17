@@ -97,14 +97,14 @@ export function LowStockTrigger({ isAuthorized, userRole }: LowStockTriggerProps
             )}
           </button>
         ) : (
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto">
             <button
               type="button"
               disabled
               id="btn-run-low-stock-scan-disabled"
               aria-disabled="true"
               title="Only store managers and inventory staff can run automation scans."
-              className="inline-flex items-center justify-center gap-2 rounded-lg bg-slate-100 px-4 py-2.5 text-sm font-semibold text-slate-400 border border-slate-200 cursor-not-allowed"
+              className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-lg bg-slate-100 px-4 py-2.5 text-sm font-semibold text-slate-400 border border-slate-200 cursor-not-allowed"
             >
               <svg
                 className="h-4 w-4 text-slate-400"
@@ -122,7 +122,7 @@ export function LowStockTrigger({ isAuthorized, userRole }: LowStockTriggerProps
               </svg>
               <span>Run Low Stock Scan</span>
             </button>
-            <span className="text-xs text-amber-800 bg-amber-50 border border-amber-200 px-2 py-1 rounded-md font-medium">
+            <span className="text-xs text-amber-800 bg-amber-50 border border-amber-200 px-2 py-1 rounded-md font-medium shrink-0">
               {userRole ? `Role: ${userRole}` : 'Auth Required'}
             </span>
           </div>
@@ -135,7 +135,7 @@ export function LowStockTrigger({ isAuthorized, userRole }: LowStockTriggerProps
           id="low-stock-scan-feedback"
           role="status"
           aria-live="polite"
-          className={`w-full mt-3 rounded-xl border p-4 text-sm shadow-xs transition-all ${
+          className={`w-full min-w-0 max-w-full overflow-hidden mt-3 rounded-xl border p-4 text-sm shadow-xs transition-all ${
             scanResult.success
               ? scanResult.data?.failedCount && scanResult.data.failedCount > 0
                 ? 'border-amber-300 bg-amber-50/80 text-amber-950'
@@ -143,11 +143,11 @@ export function LowStockTrigger({ isAuthorized, userRole }: LowStockTriggerProps
               : 'border-red-300 bg-red-50/80 text-red-950'
           }`}
         >
-          <div className="flex items-start justify-between gap-3">
-            <div className="flex items-start gap-3 w-full">
+          <div className="flex items-start justify-between gap-3 min-w-0">
+            <div className="flex items-start gap-3 w-full min-w-0">
               {scanResult.success ? (
                 <div
-                  className={`mt-0.5 rounded-full p-1 ${
+                  className={`mt-0.5 rounded-full p-1 shrink-0 ${
                     scanResult.data?.failedCount && scanResult.data.failedCount > 0
                       ? 'bg-amber-100 text-amber-700'
                       : 'bg-emerald-100 text-emerald-700'
@@ -168,7 +168,7 @@ export function LowStockTrigger({ isAuthorized, userRole }: LowStockTriggerProps
                   </svg>
                 </div>
               ) : (
-                <div className="mt-0.5 rounded-full p-1 bg-red-100 text-red-700">
+                <div className="mt-0.5 rounded-full p-1 bg-red-100 text-red-700 shrink-0">
                   <svg
                     className="h-4 w-4 shrink-0"
                     fill="none"
@@ -185,7 +185,7 @@ export function LowStockTrigger({ isAuthorized, userRole }: LowStockTriggerProps
                 </div>
               )}
 
-              <div className="w-full space-y-2">
+              <div className="w-full min-w-0 space-y-2">
                 <div className="flex items-center justify-between">
                   <h4 className="font-semibold text-sm">
                     {scanResult.success
@@ -195,8 +195,8 @@ export function LowStockTrigger({ isAuthorized, userRole }: LowStockTriggerProps
                 </div>
 
                 {scanResult.success && scanResult.data ? (
-                  <div className="space-y-2 text-xs">
-                    <p className="text-slate-700">
+                  <div className="space-y-2 text-xs min-w-0">
+                    <p className="text-slate-700 break-words">
                       Evaluated <strong className="text-slate-900">{scanResult.data.totalEvaluated}</strong> items in inventory. Found{' '}
                       <strong className="text-slate-900">{scanResult.data.lowStockCount}</strong> product(s) at or below reorder threshold.
                     </p>
@@ -216,23 +216,23 @@ export function LowStockTrigger({ isAuthorized, userRole }: LowStockTriggerProps
                     </div>
 
                     {scanResult.data.alerts.length > 0 && (
-                      <div className="mt-2.5 rounded-lg bg-white/95 p-3 border border-slate-200 text-xs shadow-2xs">
+                      <div className="mt-2.5 rounded-lg bg-white/95 p-3 border border-slate-200 text-xs shadow-2xs min-w-0">
                         <p className="font-semibold text-slate-800 mb-2">Detected Low-Stock Alerts:</p>
                         <ul className="divide-y divide-slate-100 max-h-40 overflow-y-auto pr-1">
                           {scanResult.data.alerts.map((alert, idx) => (
                             <li
                               key={`${alert.productId}-${idx}`}
-                              className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 py-1.5 first:pt-0 last:pb-0"
+                              className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 py-1.5 first:pt-0 last:pb-0 min-w-0"
                             >
-                              <div className="flex items-center gap-2">
-                                <span className="font-medium text-slate-900">
+                              <div className="flex items-center gap-2 min-w-0 flex-wrap">
+                                <span className="font-medium text-slate-900 truncate">
                                   {alert.productName}
                                 </span>
-                                <span className="text-[11px] text-slate-500 font-medium">
+                                <span className="text-[11px] text-slate-500 font-medium shrink-0">
                                   ({alert.storeName})
                                 </span>
                               </div>
-                              <div className="flex items-center gap-2 text-slate-600">
+                              <div className="flex items-center gap-2 text-slate-600 flex-wrap shrink-0">
                                 <span>
                                   Stock: <strong className="text-slate-800">{alert.currentStock}</strong> / Min:{' '}
                                   <strong className="text-slate-800">{alert.reorderLevel}</strong>

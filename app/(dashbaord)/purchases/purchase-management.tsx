@@ -154,7 +154,7 @@ function SubmitButton({ disabled }: { disabled: boolean }) {
     <button
       type="submit"
       disabled={pending || disabled}
-      className="inline-flex items-center justify-center gap-2 rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-700 active:bg-indigo-800 focus:outline-hidden focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60 transition"
+      className="inline-flex items-center justify-center gap-2 rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-700 active:bg-indigo-800 focus:outline-hidden focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60 transition w-full sm:w-auto"
     >
       {pending ? (
         <>
@@ -316,8 +316,8 @@ function PurchaseOrderForm({
         )}
       />
 
-      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        <label className="space-y-1.5 text-sm">
+      <div className="grid gap-4 sm:gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 min-w-0">
+        <label className="space-y-1.5 text-sm min-w-0">
           <span className="font-semibold text-slate-700">Destination Store</span>
           <select
             required
@@ -336,7 +336,7 @@ function PurchaseOrderForm({
           </select>
         </label>
 
-        <label className="space-y-1.5 text-sm">
+        <label className="space-y-1.5 text-sm min-w-0">
           <span className="font-semibold text-slate-700">Supplier</span>
           <select
             required
@@ -355,7 +355,7 @@ function PurchaseOrderForm({
           </select>
         </label>
 
-        <label className="space-y-1.5 text-sm">
+        <label className="space-y-1.5 text-sm min-w-0">
           <span className="font-semibold text-slate-700">
             Expected Delivery Date
           </span>
@@ -366,7 +366,7 @@ function PurchaseOrderForm({
           />
         </label>
 
-        <label className="space-y-1.5 text-sm sm:col-span-2 lg:col-span-3">
+        <label className="space-y-1.5 text-sm sm:col-span-2 lg:col-span-3 min-w-0">
           <span className="font-semibold text-slate-700">Order Notes & Logistics Reference</span>
           <textarea
             name="notes"
@@ -378,23 +378,23 @@ function PurchaseOrderForm({
       </div>
 
       {/* Order Line Items Section */}
-      <div className="space-y-4 pt-2">
-        <div className="flex items-center justify-between gap-3 border-b border-slate-200 pb-3">
-          <div>
+      <div className="space-y-4 pt-2 min-w-0">
+        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 pb-3">
+          <div className="min-w-0">
             <h3 className="font-bold text-slate-900">Purchase Order Line Items</h3>
             <p className="text-xs text-slate-500">Specify products, order quantities, and agreed purchase unit rates.</p>
           </div>
           <button
             type="button"
             onClick={addLine}
-            className="inline-flex items-center gap-1.5 rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 shadow-2xs hover:bg-slate-50 focus:outline-hidden focus:ring-2 focus:ring-indigo-500/20 transition"
+            className="inline-flex items-center justify-center gap-1.5 rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 shadow-2xs hover:bg-slate-50 focus:outline-hidden focus:ring-2 focus:ring-indigo-500/20 transition shrink-0"
           >
             <span className="text-indigo-600 font-bold">+</span>
             Add Product Line
           </button>
         </div>
 
-        <div className="space-y-3">
+        <div className="space-y-3 min-w-0">
           {lines.map((line, index) => {
             const relationship = relationshipFor(line.productId, supplierId)
             const lineTotal = toNumber(line.quantity) * toNumber(line.unitCost)
@@ -402,10 +402,10 @@ function PurchaseOrderForm({
             return (
               <div
                 key={line.key}
-                className="rounded-xl border border-slate-200 bg-slate-50/50 p-4 transition-all"
+                className="rounded-xl border border-slate-200 bg-slate-50/50 p-4 transition-all min-w-0"
               >
-                <div className="grid gap-3 sm:grid-cols-[minmax(0,2.5fr)_minmax(0,1fr)_minmax(0,1fr)_auto] sm:items-end">
-                  <label className="space-y-1 text-sm">
+                <div className="grid gap-3 grid-cols-1 sm:grid-cols-[minmax(0,2.5fr)_minmax(0,1fr)_minmax(0,1fr)_auto] sm:items-end">
+                  <label className="space-y-1 text-sm min-w-0">
                     <span className="font-semibold text-slate-700">
                       Product #{index + 1}
                     </span>
@@ -415,7 +415,7 @@ function PurchaseOrderForm({
                       onChange={(event) =>
                         selectProduct(line.key, event.target.value)
                       }
-                      className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 shadow-2xs focus:border-indigo-500 focus:outline-hidden focus:ring-2 focus:ring-indigo-500/20 transition"
+                      className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 shadow-2xs focus:border-indigo-500 focus:outline-hidden focus:ring-2 focus:ring-indigo-500/20 transition min-w-0"
                     >
                       <option value="">Select a product</option>
                       {products.map((product) => (
@@ -428,7 +428,7 @@ function PurchaseOrderForm({
                     </select>
                   </label>
 
-                  <label className="space-y-1 text-sm">
+                  <label className="space-y-1 text-sm min-w-0">
                     <span className="font-semibold text-slate-700">Quantity</span>
                     <input
                       required
@@ -439,11 +439,11 @@ function PurchaseOrderForm({
                       onChange={(event) =>
                         updateLine(line.key, { quantity: event.target.value })
                       }
-                      className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 shadow-2xs focus:border-indigo-500 focus:outline-hidden focus:ring-2 focus:ring-indigo-500/20 transition"
+                      className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 shadow-2xs focus:border-indigo-500 focus:outline-hidden focus:ring-2 focus:ring-indigo-500/20 transition min-w-0"
                     />
                   </label>
 
-                  <label className="space-y-1 text-sm">
+                  <label className="space-y-1 text-sm min-w-0">
                     <span className="font-semibold text-slate-700">Unit Cost (₹)</span>
                     <input
                       required
@@ -455,7 +455,7 @@ function PurchaseOrderForm({
                         updateLine(line.key, { unitCost: event.target.value })
                       }
                       placeholder="0.00"
-                      className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 shadow-2xs focus:border-indigo-500 focus:outline-hidden focus:ring-2 focus:ring-indigo-500/20 transition"
+                      className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 shadow-2xs focus:border-indigo-500 focus:outline-hidden focus:ring-2 focus:ring-indigo-500/20 transition min-w-0"
                     />
                   </label>
 
@@ -464,16 +464,16 @@ function PurchaseOrderForm({
                     onClick={() => removeLine(line.key)}
                     disabled={lines.length === 1}
                     title={lines.length === 1 ? 'At least one line item is required' : 'Remove product line'}
-                    className="inline-flex h-9 items-center justify-center rounded-lg border border-slate-200 bg-white px-3 text-xs font-semibold text-rose-600 hover:bg-rose-50 hover:border-rose-200 disabled:cursor-not-allowed disabled:opacity-40 transition"
+                    className="inline-flex h-9 items-center justify-center rounded-lg border border-slate-200 bg-white px-3 text-xs font-semibold text-rose-600 hover:bg-rose-50 hover:border-rose-200 disabled:cursor-not-allowed disabled:opacity-40 transition w-full sm:w-auto shrink-0"
                   >
                     Remove
                   </button>
                 </div>
 
-                <div className="mt-3 flex flex-wrap items-center justify-between gap-2 border-t border-slate-200/80 pt-2.5 text-xs text-slate-500">
-                  <div className="flex items-center gap-2">
+                <div className="mt-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-t border-slate-200/80 pt-2.5 text-xs text-slate-500">
+                  <div className="flex items-center gap-2 flex-wrap">
                     {relationship ? (
-                      <span className="inline-flex items-center gap-1.5 rounded-md bg-white px-2 py-1 font-medium text-slate-700 border border-slate-200 shadow-2xs">
+                      <span className="inline-flex items-center gap-1.5 rounded-md bg-white px-2 py-1 font-medium text-slate-700 border border-slate-200 shadow-2xs flex-wrap">
                         {relationship.is_preferred && (
                           <span className="text-amber-500 font-bold">★ Preferred</span>
                         )}
@@ -498,7 +498,7 @@ function PurchaseOrderForm({
       </div>
 
       {/* Form Action Summary & Footer */}
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-slate-200 pt-5">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 border-t border-slate-200 pt-5">
         <div className="flex items-baseline gap-2">
           <span className="text-sm font-semibold text-slate-600">Calculated PO Total:</span>
           <span className="text-xl font-bold text-slate-900">{formatCurrency(total)}</span>
@@ -507,7 +507,7 @@ function PurchaseOrderForm({
           <button
             type="button"
             onClick={onCancel}
-            className="rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 shadow-2xs hover:bg-slate-50 focus:outline-hidden focus:ring-2 focus:ring-slate-300 transition"
+            className="flex-1 sm:flex-initial rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 shadow-2xs hover:bg-slate-50 focus:outline-hidden focus:ring-2 focus:ring-slate-300 transition text-center"
           >
             Cancel
           </button>
@@ -628,11 +628,11 @@ export default function PurchaseManagement({
   }, [purchaseOrders, searchQuery, statusFilter])
 
   return (
-    <main className="space-y-6 p-6 max-w-7xl mx-auto">
+    <main className="w-full min-w-0 max-w-7xl mx-auto space-y-6 p-4 sm:p-6">
       {/* Page Header */}
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between border-b border-slate-200 pb-5">
-        <div>
-          <div className="flex items-center gap-3">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between border-b border-slate-200 pb-5 min-w-0">
+        <div className="min-w-0 flex-1">
+          <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
             <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-indigo-600 text-white shadow-2xs shrink-0">
               <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
@@ -643,7 +643,7 @@ export default function PurchaseManagement({
               {purchaseOrders.length} {purchaseOrders.length === 1 ? 'Order' : 'Orders'}
             </span>
           </div>
-          <p className="mt-1 text-sm text-slate-500">
+          <p className="mt-1 text-sm text-slate-500 break-words">
             Create purchase orders, track incoming supplier shipments, and manage scheduled stock arrivals.
           </p>
         </div>
@@ -651,7 +651,7 @@ export default function PurchaseManagement({
         <button
           type="button"
           onClick={() => setIsFormOpen((open) => !open)}
-          className={`inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold shadow-xs transition ${
+          className={`inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold shadow-xs transition w-full sm:w-auto shrink-0 max-w-full text-center ${
             isFormOpen
               ? 'border border-slate-300 bg-white text-slate-700 hover:bg-slate-50'
               : 'bg-indigo-600 text-white hover:bg-indigo-700 active:bg-indigo-800 focus:outline-hidden focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
@@ -659,14 +659,14 @@ export default function PurchaseManagement({
         >
           {isFormOpen ? (
             <>
-              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
               </svg>
               <span>Close Form</span>
             </>
           ) : (
             <>
-              <svg className="h-4 w-4 text-indigo-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+              <svg className="h-4 w-4 text-indigo-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
               </svg>
               <span>+ Create Purchase Order</span>
@@ -676,55 +676,55 @@ export default function PurchaseManagement({
       </div>
 
       {/* KPI Overview Cards */}
-      <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-        <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-xs">
-          <div className="flex items-center justify-between">
-            <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">Total Purchase Orders</p>
-            <span className="flex h-7 w-7 items-center justify-center rounded-md bg-indigo-50 text-indigo-700 border border-indigo-100 text-xs">
+      <div className="grid grid-cols-2 gap-3 sm:gap-4 sm:grid-cols-4 min-w-0">
+        <div className="rounded-xl border border-slate-200 bg-white p-3.5 sm:p-4 shadow-xs min-w-0">
+          <div className="flex items-center justify-between gap-1">
+            <p className="text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-slate-500 truncate" title="Total Purchase Orders">Total Purchase Orders</p>
+            <span className="flex h-7 w-7 items-center justify-center rounded-md bg-indigo-50 text-indigo-700 border border-indigo-100 text-xs shrink-0">
               📋
             </span>
           </div>
-          <div className="mt-2 flex items-baseline gap-2">
-            <span className="text-2xl font-bold text-slate-900">{purchaseOrders.length}</span>
+          <div className="mt-2 flex items-baseline gap-1.5 flex-wrap">
+            <span className="text-xl sm:text-2xl font-bold text-slate-900 truncate">{purchaseOrders.length}</span>
             <span className="text-xs text-slate-400">POs</span>
           </div>
         </div>
 
-        <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-xs">
-          <div className="flex items-center justify-between">
-            <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">Active / Inbound</p>
-            <span className="flex h-7 w-7 items-center justify-center rounded-md bg-blue-50 text-blue-700 border border-blue-100 text-xs">
+        <div className="rounded-xl border border-slate-200 bg-white p-3.5 sm:p-4 shadow-xs min-w-0">
+          <div className="flex items-center justify-between gap-1">
+            <p className="text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-slate-500 truncate" title="Active / Inbound">Active / Inbound</p>
+            <span className="flex h-7 w-7 items-center justify-center rounded-md bg-blue-50 text-blue-700 border border-blue-100 text-xs shrink-0">
               🚚
             </span>
           </div>
-          <div className="mt-2 flex items-baseline gap-2">
-            <span className="text-2xl font-bold text-blue-700">{activeOrdersCount}</span>
+          <div className="mt-2 flex items-baseline gap-1.5 flex-wrap">
+            <span className="text-xl sm:text-2xl font-bold text-blue-700 truncate">{activeOrdersCount}</span>
             <span className="text-xs text-blue-600">in transit</span>
           </div>
         </div>
 
-        <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-xs">
-          <div className="flex items-center justify-between">
-            <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">Received / Completed</p>
-            <span className="flex h-7 w-7 items-center justify-center rounded-md bg-emerald-50 text-emerald-700 border border-emerald-100 text-xs">
+        <div className="rounded-xl border border-slate-200 bg-white p-3.5 sm:p-4 shadow-xs min-w-0">
+          <div className="flex items-center justify-between gap-1">
+            <p className="text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-slate-500 truncate" title="Received / Completed">Received / Completed</p>
+            <span className="flex h-7 w-7 items-center justify-center rounded-md bg-emerald-50 text-emerald-700 border border-emerald-100 text-xs shrink-0">
               ✓
             </span>
           </div>
-          <div className="mt-2 flex items-baseline gap-2">
-            <span className="text-2xl font-bold text-emerald-700">{receivedOrdersCount}</span>
+          <div className="mt-2 flex items-baseline gap-1.5 flex-wrap">
+            <span className="text-xl sm:text-2xl font-bold text-emerald-700 truncate">{receivedOrdersCount}</span>
             <span className="text-xs text-emerald-600">fulfilled</span>
           </div>
         </div>
 
-        <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-xs">
-          <div className="flex items-center justify-between">
-            <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">Units Scheduled</p>
-            <span className="flex h-7 w-7 items-center justify-center rounded-md bg-slate-100 text-slate-600 border border-slate-200 text-xs">
+        <div className="rounded-xl border border-slate-200 bg-white p-3.5 sm:p-4 shadow-xs min-w-0">
+          <div className="flex items-center justify-between gap-1">
+            <p className="text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-slate-500 truncate" title="Units Scheduled">Units Scheduled</p>
+            <span className="flex h-7 w-7 items-center justify-center rounded-md bg-slate-100 text-slate-600 border border-slate-200 text-xs shrink-0">
               🔢
             </span>
           </div>
-          <div className="mt-2 flex items-baseline gap-2">
-            <span className="text-2xl font-bold text-slate-900">{totalUnitsPlanned.toLocaleString('en-IN')}</span>
+          <div className="mt-2 flex items-baseline gap-1.5 flex-wrap">
+            <span className="text-xl sm:text-2xl font-bold text-slate-900 truncate">{totalUnitsPlanned.toLocaleString('en-IN')}</span>
             <span className="text-xs text-slate-400">units</span>
           </div>
         </div>
@@ -732,7 +732,7 @@ export default function PurchaseManagement({
 
       {/* Create Purchase Order Form Drawer/Panel */}
       {isFormOpen && (
-        <section className="rounded-xl border border-indigo-100 bg-white p-6 shadow-md transition-all">
+        <section className="w-full min-w-0 max-w-full overflow-hidden rounded-xl border border-indigo-100 bg-white p-4 sm:p-6 shadow-md transition-all">
           <div className="border-b border-slate-200 pb-4 mb-5">
             <h2 className="text-lg font-bold text-slate-900">New Purchase Order</h2>
             <p className="mt-1 text-xs text-slate-500">
@@ -750,8 +750,8 @@ export default function PurchaseManagement({
       )}
 
       {/* Search and Filters Bar */}
-      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-white p-3.5 rounded-xl border border-slate-200 shadow-2xs">
-        <div className="relative flex-1">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-white p-3.5 rounded-xl border border-slate-200 shadow-2xs w-full min-w-0 max-w-full">
+        <div className="relative flex-1 min-w-0">
           <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5">
             <svg className="h-4 w-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -775,11 +775,11 @@ export default function PurchaseManagement({
           )}
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center justify-between sm:justify-end gap-2.5 min-w-0">
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-700 shadow-2xs focus:border-indigo-500 focus:outline-hidden focus:ring-2 focus:ring-indigo-500/20 transition"
+            className="flex-1 sm:flex-initial rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-700 shadow-2xs focus:border-indigo-500 focus:outline-hidden focus:ring-2 focus:ring-indigo-500/20 transition min-w-[140px]"
           >
             <option value="ALL">All Statuses</option>
             <option value="ORDERED">Ordered / Pending</option>
@@ -788,7 +788,7 @@ export default function PurchaseManagement({
             <option value="CANCELLED">Cancelled</option>
           </select>
 
-          <span className="text-xs text-slate-500 whitespace-nowrap pl-1">
+          <span className="text-xs text-slate-500 whitespace-nowrap pl-1 shrink-0">
             Showing <strong>{filteredOrders.length}</strong> of {purchaseOrders.length}
           </span>
         </div>
@@ -796,7 +796,7 @@ export default function PurchaseManagement({
 
       {/* Main Table / Empty States */}
       {purchaseOrders.length === 0 ? (
-        <section className="rounded-xl border border-dashed border-slate-300 bg-slate-50/50 p-10 text-center shadow-xs">
+        <section className="w-full min-w-0 max-w-full overflow-hidden rounded-xl border border-dashed border-slate-300 bg-slate-50/50 p-6 sm:p-10 text-center shadow-xs">
           <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-slate-100 text-slate-400 mb-3">
             <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
@@ -812,14 +812,14 @@ export default function PurchaseManagement({
             <button
               type="button"
               onClick={() => setIsFormOpen(true)}
-              className="inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-700 transition"
+              className="inline-flex items-center justify-center gap-2 rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-700 transition w-full sm:w-auto"
             >
               + Create First Purchase Order
             </button>
           </div>
         </section>
       ) : filteredOrders.length === 0 ? (
-        <section className="rounded-xl border border-dashed border-slate-300 bg-slate-50/50 p-8 text-center shadow-xs">
+        <section className="w-full min-w-0 max-w-full overflow-hidden rounded-xl border border-dashed border-slate-300 bg-slate-50/50 p-6 sm:p-8 text-center shadow-xs">
           <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-slate-400 mb-2">
             <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -835,39 +835,39 @@ export default function PurchaseManagement({
               setSearchQuery('')
               setStatusFilter('ALL')
             }}
-            className="mt-3 inline-flex items-center gap-1 rounded-md border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-50 shadow-2xs"
+            className="mt-3 inline-flex items-center justify-center gap-1 rounded-md border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-50 shadow-2xs w-full sm:w-auto"
           >
             Clear Filters
           </button>
         </section>
       ) : (
-        <section className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-xs">
-          <div className="overflow-x-auto">
-            <table className="min-w-[1000px] w-full text-left text-sm">
+        <section className="w-full min-w-0 max-w-full overflow-hidden rounded-xl border border-slate-200 bg-white shadow-xs">
+          <div className="w-full overflow-x-auto overscroll-x-contain" style={{ WebkitOverflowScrolling: 'touch' }}>
+            <table className="min-w-[900px] w-full text-left text-sm">
               <thead className="border-b border-slate-200 bg-slate-50/80 text-xs font-semibold uppercase tracking-wider text-slate-600">
                 <tr>
-                  <th scope="col" className="px-5 py-3.5">PO Number</th>
-                  <th scope="col" className="px-4 py-3.5">Supplier</th>
-                  <th scope="col" className="px-4 py-3.5">Destination Store</th>
-                  <th scope="col" className="px-4 py-3.5">Status</th>
-                  <th scope="col" className="px-4 py-3.5">Order Date</th>
-                  <th scope="col" className="px-4 py-3.5">Expected Delivery</th>
-                  <th scope="col" className="px-4 py-3.5 text-right">Planned Units</th>
-                  <th scope="col" className="px-5 py-3.5">Notes</th>
+                  <th scope="col" className="px-4 sm:px-5 py-3.5 whitespace-nowrap">PO Number</th>
+                  <th scope="col" className="px-3 sm:px-4 py-3.5 whitespace-nowrap">Supplier</th>
+                  <th scope="col" className="px-3 sm:px-4 py-3.5 whitespace-nowrap">Destination Store</th>
+                  <th scope="col" className="px-3 sm:px-4 py-3.5 whitespace-nowrap">Status</th>
+                  <th scope="col" className="px-3 sm:px-4 py-3.5 whitespace-nowrap">Order Date</th>
+                  <th scope="col" className="px-3 sm:px-4 py-3.5 whitespace-nowrap">Expected Delivery</th>
+                  <th scope="col" className="px-3 sm:px-4 py-3.5 text-right whitespace-nowrap">Planned Units</th>
+                  <th scope="col" className="px-4 sm:px-5 py-3.5 whitespace-nowrap">Notes</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
                 {filteredOrders.map((purchaseOrder) => (
                   <tr key={purchaseOrder.id} className="hover:bg-slate-50/60 transition-colors">
-                    <td className="whitespace-nowrap px-5 py-4">
+                    <td className="whitespace-nowrap px-4 sm:px-5 py-4">
                       <span className="font-mono font-bold text-slate-900 bg-slate-100 px-2 py-0.5 rounded-md border border-slate-200 text-xs">
                         {purchaseOrder.po_number ?? '—'}
                       </span>
                     </td>
-                    <td className="px-4 py-4 font-semibold text-slate-800">
+                    <td className="px-3 sm:px-4 py-4 font-semibold text-slate-800 max-w-[180px] sm:max-w-xs truncate" title={purchaseOrder.suppliers?.[0]?.name ?? ''}>
                       {purchaseOrder.suppliers?.[0]?.name ?? '—'}
                     </td>
-                    <td className="px-4 py-4 text-slate-700">
+                    <td className="px-3 sm:px-4 py-4 text-slate-700 max-w-[160px] sm:max-w-xs truncate" title={`${purchaseOrder.stores?.[0]?.name ?? ''} ${purchaseOrder.stores?.[0]?.code ? `(${purchaseOrder.stores[0].code})` : ''}`}>
                       <span className="font-medium text-slate-800">{purchaseOrder.stores?.[0]?.name ?? '—'}</span>
                       {purchaseOrder.stores?.[0]?.code && (
                         <span className="ml-1 text-[11px] font-mono text-slate-400">
@@ -875,22 +875,22 @@ export default function PurchaseManagement({
                         </span>
                       )}
                     </td>
-                    <td className="px-4 py-4">
+                    <td className="px-3 sm:px-4 py-4 whitespace-nowrap">
                       {getStatusBadge(purchaseOrder.status)}
                     </td>
-                    <td className="whitespace-nowrap px-4 py-4 text-slate-600 text-xs">
+                    <td className="whitespace-nowrap px-3 sm:px-4 py-4 text-slate-600 text-xs">
                       {formatDate(purchaseOrder.order_date)}
                     </td>
-                    <td className="whitespace-nowrap px-4 py-4 text-slate-600 text-xs">
+                    <td className="whitespace-nowrap px-3 sm:px-4 py-4 text-slate-600 text-xs">
                       {formatDate(purchaseOrder.expected_date)}
                     </td>
-                    <td className="whitespace-nowrap px-4 py-4 text-right">
+                    <td className="whitespace-nowrap px-3 sm:px-4 py-4 text-right">
                       <span className="font-bold text-slate-900 font-mono">
                         {toNumber(itemCounts.get(purchaseOrder.id)).toLocaleString('en-IN')}
                       </span>
                       <span className="text-xs text-slate-400 ml-1">units</span>
                     </td>
-                    <td className="max-w-xs px-5 py-4 text-slate-600 text-xs truncate" title={purchaseOrder.notes ?? ''}>
+                    <td className="max-w-[200px] px-4 sm:px-5 py-4 text-slate-600 text-xs truncate" title={purchaseOrder.notes ?? ''}>
                       {purchaseOrder.notes ? (
                         <span className="truncate block">{purchaseOrder.notes}</span>
                       ) : (

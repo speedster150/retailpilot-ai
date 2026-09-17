@@ -20,7 +20,7 @@ export default async function GoodsReceiptsPage() {
 
   if (!user) {
     return (
-      <main className="space-y-6 p-6 max-w-7xl mx-auto">
+      <main className="w-full min-w-0 max-w-7xl mx-auto space-y-6 p-4 sm:p-6">
         <div className="border-b border-slate-200 pb-5">
           <h1 className="text-2xl font-bold tracking-tight text-slate-900">Goods Receipts</h1>
           <p className="mt-1 text-sm text-slate-500">
@@ -54,7 +54,7 @@ export default async function GoodsReceiptsPage() {
 
   if (membershipError || !membership?.organization_id) {
     return (
-      <main className="space-y-6 p-6 max-w-7xl mx-auto">
+      <main className="w-full min-w-0 max-w-7xl mx-auto space-y-6 p-4 sm:p-6">
         <div className="border-b border-slate-200 pb-5">
           <h1 className="text-2xl font-bold tracking-tight text-slate-900">Goods Receipts</h1>
           <p className="mt-1 text-sm text-slate-500">
@@ -80,7 +80,7 @@ export default async function GoodsReceiptsPage() {
 
   if (!GOODS_RECEIPT_ROLES.has(membership.role)) {
     return (
-      <main className="space-y-6 p-6 max-w-7xl mx-auto">
+      <main className="w-full min-w-0 max-w-7xl mx-auto space-y-6 p-4 sm:p-6">
         <div className="border-b border-slate-200 pb-5">
           <h1 className="text-2xl font-bold tracking-tight text-slate-900">Goods Receipts</h1>
           <p className="mt-1 text-sm text-slate-500">
@@ -155,7 +155,7 @@ export default async function GoodsReceiptsPage() {
 
   if (queryError) {
     return (
-      <main className="space-y-6 p-6 max-w-7xl mx-auto">
+      <main className="w-full min-w-0 max-w-7xl mx-auto space-y-6 p-4 sm:p-6">
         <div className="border-b border-slate-200 pb-5">
           <h1 className="text-2xl font-bold tracking-tight text-slate-900">Goods Receipts</h1>
           <p className="mt-1 text-sm text-slate-500">
@@ -197,7 +197,7 @@ export default async function GoodsReceiptsPage() {
 
     if (error) {
       return (
-        <main className="space-y-6 p-6 max-w-7xl mx-auto">
+        <main className="w-full min-w-0 max-w-7xl mx-auto space-y-6 p-4 sm:p-6">
           <div className="border-b border-slate-200 pb-5">
             <h1 className="text-2xl font-bold tracking-tight text-slate-900">Goods Receipts</h1>
             <p className="mt-1 text-sm text-slate-500">
