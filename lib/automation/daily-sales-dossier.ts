@@ -490,7 +490,7 @@ export async function executeDailySalesDossierAutomation({
   storeId,
   businessDate,
   timezone,
-  webhookUrl,
+  webhookUrl = process.env.MAKE_DAILY_DOSSIER_WEBHOOK_URL,
   force = false,
   now = new Date(),
 }: DailySalesDossierParams): Promise<DailySalesDossierResult> {
@@ -567,9 +567,21 @@ export async function executeDailySalesDossierAutomation({
   const resolvedWebhookUrl =
     webhookUrl?.trim() ||
     process.env.MAKE_DAILY_DOSSIER_WEBHOOK_URL?.trim() ||
-    process.env.MAKE_WEBHOOK_URL?.trim() ||
     ''
   const maskedUrl = maskWebhookUrl(resolvedWebhookUrl)
+
+  let webhookHost: string | undefined
+  if (resolvedWebhookUrl) {
+    try {
+      webhookHost = new URL(resolvedWebhookUrl).hostname
+    } catch {
+      webhookHost = 'invalid_url'
+    }
+  }
+
+  console.log(
+    `[DailyDossier] Webhook configured: ${Boolean(resolvedWebhookUrl)}${webhookHost ? ` (${webhookHost})` : ''}, entering dispatch: ${Boolean(resolvedWebhookUrl)}`
+  )
 
   if (shouldSuppress) {
     await logDossierAuditRecord({

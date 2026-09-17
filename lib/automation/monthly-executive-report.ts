@@ -199,7 +199,7 @@ export async function executeMonthlyExecutiveReportAutomation({
   supabase,
   organizationId,
   periodMonth,
-  webhookUrl,
+  webhookUrl = process.env.MAKE_MONTHLY_REPORT_WEBHOOK_URL,
   force = false,
   now = new Date(),
 }: MonthlyExecutiveReportParams): Promise<MonthlyExecutiveReportResult> {
@@ -325,9 +325,21 @@ export async function executeMonthlyExecutiveReportAutomation({
   const resolvedWebhookUrl =
     webhookUrl?.trim() ||
     process.env.MAKE_MONTHLY_REPORT_WEBHOOK_URL?.trim() ||
-    process.env.MAKE_WEBHOOK_URL?.trim() ||
     ''
   const maskedUrl = maskWebhookUrl(resolvedWebhookUrl)
+
+  let webhookHost: string | undefined
+  if (resolvedWebhookUrl) {
+    try {
+      webhookHost = new URL(resolvedWebhookUrl).hostname
+    } catch {
+      webhookHost = 'invalid_url'
+    }
+  }
+
+  console.log(
+    `[MonthlyReport] Webhook configured: ${Boolean(resolvedWebhookUrl)}${webhookHost ? ` (${webhookHost})` : ''}, entering dispatch: ${Boolean(resolvedWebhookUrl)}`
+  )
 
   // 3. Handle Duplicate Suppression
   if (shouldSuppress) {

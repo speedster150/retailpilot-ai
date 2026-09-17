@@ -176,7 +176,7 @@ export async function executeSupplierPaymentEscalation({
   supabase,
   organizationId,
   storeId,
-  webhookUrl,
+  webhookUrl = process.env.MAKE_SUPPLIER_ESCALATION_WEBHOOK_URL,
   cooldownHours = 24,
   now = new Date(),
 }: SupplierEscalationParams): Promise<SupplierEscalationResult> {
@@ -278,9 +278,21 @@ export async function executeSupplierPaymentEscalation({
     webhookUrl?.trim() ||
     process.env.MAKE_SUPPLIER_ESCALATION_WEBHOOK_URL?.trim() ||
     process.env.MAKE_SUPPLIER_PAYMENT_ESCALATION_WEBHOOK_URL?.trim() ||
-    process.env.MAKE_WEBHOOK_URL?.trim() ||
     ''
   const maskedUrl = maskWebhookUrl(resolvedWebhookUrl)
+
+  let webhookHost: string | undefined
+  if (resolvedWebhookUrl) {
+    try {
+      webhookHost = new URL(resolvedWebhookUrl).hostname
+    } catch {
+      webhookHost = 'invalid_url'
+    }
+  }
+
+  console.log(
+    `[SupplierEscalation] Webhook configured: ${Boolean(resolvedWebhookUrl)}${webhookHost ? ` (${webhookHost})` : ''}, entering dispatch: ${Boolean(resolvedWebhookUrl)}`
+  )
 
   const itemsToDispatch: SupplierEscalationItem[] = []
   const recordedEscalations: EscalationItemRecord[] = []
