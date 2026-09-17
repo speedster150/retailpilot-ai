@@ -1,7 +1,34 @@
 import { spawnSync } from 'node:child_process'
 import { resolve } from 'node:path'
+import { createRequire } from 'node:module'
 
 const pwd = process.cwd()
+
+// Process isolation worker mode
+if (process.argv[2] === '--worker') {
+  const targetSuite = process.argv[3]
+  if (!targetSuite) {
+    console.error('No target suite specified for test worker')
+    process.exit(1)
+  }
+
+  const require = createRequire(import.meta.url)
+  const jitiExport = require('jiti')
+  const createJiti = typeof jitiExport === 'function' ? jitiExport : jitiExport.createJiti
+  const jiti = createJiti(pwd, {
+    alias: {
+      '@': pwd,
+    },
+  })
+
+  try {
+    await jiti.import(resolve(pwd, targetSuite))
+    process.exit(0)
+  } catch (err) {
+    console.error(err)
+    process.exit(1)
+  }
+}
 
 const testSuites = [
   'tests/verify-returns-suite.ts',
@@ -26,11 +53,15 @@ let failedSuites = 0
 
 for (const suite of suitesToRun) {
   console.log(`\n▶ Starting test suite: ${suite}`)
-  const result = spawnSync('node', [resolve(pwd, 'scratch/run-test.mjs'), suite], {
-    cwd: pwd,
-    stdio: 'inherit',
-    env: process.env,
-  })
+  const result = spawnSync(
+    'node',
+    [resolve(pwd, 'scripts/run-tests.mjs'), '--worker', suite],
+    {
+      cwd: pwd,
+      stdio: 'inherit',
+      env: process.env,
+    }
+  )
 
   if (result.status === 0) {
     passedSuites++
