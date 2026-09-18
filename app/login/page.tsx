@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 
@@ -36,13 +37,20 @@ export default function LoginPage() {
   return (
     <div className="flex min-h-screen flex-col justify-center bg-gray-50 py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="flex items-center justify-center gap-2">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gray-900 text-white font-bold text-lg shadow-sm">
+        <Link
+          href="/"
+          className="flex items-center justify-center gap-2 group transition focus:outline-hidden"
+          aria-label="RetailPilot AI Home"
+        >
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gray-900 text-white font-bold text-lg shadow-sm group-hover:bg-indigo-600 transition">
             RP
           </div>
-          <span className="text-2xl font-bold tracking-tight text-gray-900">RetailPilot AI</span>
-        </div>
+          <span className="text-2xl font-bold tracking-tight text-gray-900 group-hover:text-indigo-600 transition">
+            RetailPilot AI
+          </span>
+        </Link>
         <h2 className="mt-6 text-center text-xl font-semibold tracking-tight text-gray-900">
+
           Sign in to your account
         </h2>
         <p className="mt-2 text-center text-sm text-gray-600">

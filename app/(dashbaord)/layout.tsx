@@ -1,5 +1,13 @@
+import type { Metadata } from 'next'
 import { createClient } from '@/lib/supabase/server'
 import SidebarNav, { type NavigationItem } from './sidebar-nav'
+
+export const metadata: Metadata = {
+  robots: {
+    index: false,
+    follow: false,
+  },
+}
 
 type UserRole =
   | 'admin_owner'
